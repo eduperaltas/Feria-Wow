@@ -1,0 +1,42 @@
+<div class="background-container">
+  <!-- Imagen de fondo -->
+  <img src="imgs/fondo.png" alt="Fondo" class="background-image" />
+
+  <!-- Cabecera de trivia con barra de progreso integrada -->
+  <div class="trivia-header">
+    <div class="progress-fill" [style.width.%]="(timeLeft / 10) * 100"></div> <!-- Fondo de progreso -->
+    <span class="icon">🍿</span>
+    <span class="title">{{ triviaName | uppercase }}</span>
+    <span class="timer">{{ timeLeft }}'</span>
+  </div>
+
+  <div class="trivia-container">
+
+    <!-- Contenedor de Pregunta -->
+    <div class="pregunta-card">
+      <div class="pregunta">
+        {{ currentQuestion?.id }}
+      </div>
+    </div>
+
+    <!-- Opciones -->
+    <div class="opciones">
+      <button
+        *ngFor="let optionKey of getOptionKeys(currentQuestion)"
+        [class.selected]="selectedAnswer === optionKey"
+        (click)="selectAnswer(optionKey)"
+        class="opcion"
+      >
+        {{ currentQuestion?.[optionKey] }}
+      </button>
+    </div>
+
+    <!-- Botón Confirmar -->
+    <button class="confirmar" (click)="nextQuestion()" [disabled]="!isAnswered">Siguiente</button>
+
+    <!-- Feedback en pantalla completa -->
+    <div [ngClass]="feedbackClass" class="feedback-overlay">
+      {{ feedbackMessage }}
+    </div>
+  </div>
+</div>

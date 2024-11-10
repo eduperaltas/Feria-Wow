@@ -1,0 +1,41 @@
+<div class="background-container">
+    <!-- Imagen de fondo -->
+    <img src="imgs/fondo.png" alt="Fondo" class="background-image" />
+  
+    <!-- Contenedor del login -->
+    <div class="login-container">
+      <div class="login-box">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="imgs/wow-logo.png" alt="Logo OWOW" />
+        </div>
+  
+        <!-- Título y subtítulo alineados a la izquierda -->
+        <h1 class="welcome-title">Bienvenido de vuelta</h1>
+        <p class="subtitle">Inicia Sesión</p>
+  
+        <!-- Campo de entrada de usuario con ícono -->
+        <div class="input-group">
+          <span class="input-icon">
+          </span>
+          <input
+            type="text"
+            [(ngModel)]="username"      
+            placeholder="Correo electrónico"
+            class="input-field"
+          />
+        </div>
+  
+        <!-- Mensaje de error -->
+        <p NgIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  
+        <!-- Botón de ingresar con ícono -->
+        <button (click)="login()" class="login-button">
+          <span class="button-icon">
+          </span>
+          Ingresar
+        </button>
+      </div>
+    </div>
+  </div>
+  
