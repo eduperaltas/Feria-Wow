@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AuthService } from "../../services/auth.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { firstValueFrom } from "rxjs";
 
 @Component({
@@ -27,7 +27,8 @@ export class HomeComponent {
 
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   async ngOnInit() {
@@ -59,5 +60,12 @@ export class HomeComponent {
    */
   getSelloImage(sello: string): string {
     return this.sellosImgs["sello-" + sello] || "imgs/default.png";
+  }
+
+  logout() {
+    // Eliminar datos de usuario en localStorage
+    localStorage.clear();
+    // Redirigir al login
+    this.router.navigate(['/login']);
   }
 }
