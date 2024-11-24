@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+
+/* Estilos globales */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* Sección superior de bienvenida */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  color: white;
+  margin-top: 40px; /* Ajustamos el margen superior para bajarlo */
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+}
+
+.morning-text {
+  font-size: 20px; /* Aumentamos el tamaño de fuente */
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+  margin: 0;
+  color: #f1d7ff;
+}
+
+.user-name {
+  font-size: 26px; /* Aumentamos el tamaño de fuente */
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
+  margin: 8px 0 0; /* Ajustamos el margen */
+}
+
+.profile-image img {
+  width: 60px; /* Aumentamos el tamaño de la imagen */
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+/* Contenedor de la imagen de fondo */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #ec671f;
+}
+
+
+  /* Contenedor principal del login */
+.home-container {
+  position: relative; /* Necesario para posicionar la imagen como fondo */
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Alinea el login hacia la parte inferior */
+  height: 100vh;
+  width: 100%;
+  padding: 0px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: auto;
+}
+
+/* Imagen de fondo */
+.background-image {
+  position: absolute;
+  top: 45%; /* Posiciona al 50% desde arriba */
+  left: 50%; /* Posiciona al 50% desde la izquierda */
+  transform: translate(-50%, -50%); /* Ajusta la posición para centrarla completamente */
+  width: auto; /* Mantiene proporciones */
+  height: auto; /* Mantiene proporciones */
+  max-width: 87%; /* Se ajusta al ancho máximo del contenedor */
+  max-height: 100%; /* Se ajusta al alto máximo del contenedor */
+  z-index: 0; /* Coloca la imagen detrás del contenido */
+  pointer-events: none; /* Evita que interfiera con los clics */
+}
+
+.home-box {
+  background-color: #611f78;
+  border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
+  padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
+  width: 100%;
+  max-width: 320px;
+  min-height: 90vh; /* Mantiene la altura mínima */
+  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea el contenido hacia la parte superior */
+  border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+}
+
+/* Logo */
+.logo img {
+  width: 120px; /* Ajusta el tamaño del logo */
+  object-fit: contain; /* Mantiene las proporciones del logo */
+}
+
+.home-title {
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center; /* Centra el texto */
+  margin: 30px 0; /* Reduce aún más el margen inferior */
+}

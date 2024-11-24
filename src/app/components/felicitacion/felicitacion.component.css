@@ -1,0 +1,319 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+
+/* Estilos globales */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* Sección superior de bienvenida */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  color: white;
+  margin-top: 40px; /* Ajustamos el margen superior para bajarlo */
+}
+
+/* Contenedor de la imagen de fondo */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #ec671f;
+}
+.logo {
+    display: flex; /* Asegura el uso de flexbox para centrar */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 100%; /* Asegura que ocupe el ancho del contenedor */
+    margin-bottom: 10px; /* Espaciado inferior opcional */
+  }
+  
+  .logo img {
+    width: 70%; /* Ajusta el tamaño del logo */
+    object-fit: contain; /* Mantiene las proporciones del logo */
+  }
+
+  /* Contenedor principal del login */
+.home-container {
+  position: relative; /* Necesario para posicionar la imagen como fondo */
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Alinea el login hacia la parte inferior */
+  height: 98vh;
+  width: 100%;
+  padding: 0px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: auto;
+}
+
+.home-box.felicidades {
+    position: relative;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 30px;
+    width: 100%;
+    max-width: 320px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+    /* Fondo con líneas más definidas y juntas */
+    background: repeating-conic-gradient(
+      #4a1861 0deg,
+      #4a1861 6deg,
+      #611f78 6deg,
+      #611f78 12deg
+    );
+  }
+  
+  .home-box.felicidades::before {
+    content: "";
+    position: absolute;
+    top: 40%; /* Punto de convergencia más arriba */
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+      #4a1861 0deg,
+      #4a1861 6deg,
+      #611f78 6deg,
+      #611f78 12deg
+    );
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  
+.home-box.sello-lima {
+    position: relative;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 30px;
+    width: 100%;
+    max-width: 320px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+    /* Fondo con líneas más definidas y juntas */
+    background: repeating-conic-gradient(
+        #611F78 0deg,
+        #611F78 6deg,
+        #6B228A 6deg,
+        #6B228A 12deg
+    );
+  }
+  
+  .home-box.sello-lima::before {
+    content: "";
+    position: absolute;
+    top: 40%; /* Punto de convergencia más arriba */
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+      #611F78 0deg,
+      #611F78 6deg,
+      #6B228A 6deg,
+      #6B228A 12deg
+    );
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+
+.home-box.sello-ica {
+    position: relative;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 30px;
+    width: 100%;
+    max-width: 320px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+    /* Fondo con líneas más definidas y juntas */
+    background: repeating-conic-gradient(
+        #EC671F 0deg,
+        #EC671F 6deg,
+        #EF7E40 6deg,
+        #EF7E40 12deg
+    );
+  }
+  
+  .home-box.sello-ica::before {
+    content: "";
+    position: absolute;
+    top: 40%; /* Punto de convergencia más arriba */
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+      #EC671F 0deg,
+      #EC671F 6deg,
+      #EF7E40 6deg,
+      #EF7E40 12deg
+    );
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+.home-box.sello-chiclayo {
+    position: relative;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 30px;
+    width: 100%;
+    max-width: 320px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+    /* Fondo con líneas más definidas y juntas */
+    background: repeating-conic-gradient(
+        #4B0067 0deg,
+        #4B0067 6deg,
+        #58077B 6deg,
+        #58077B 12deg
+    );
+  }
+  
+  .home-box.sello-chiclayo::before {
+    content: "";
+    position: absolute;
+    top: 40%; /* Punto de convergencia más arriba */
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+      #4B0067 0deg,
+      #4B0067 6deg,
+      #58077B 6deg,
+      #58077B 12deg
+    );
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+.home-box.sello-huancayo {
+    position: relative;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 30px;
+    width: 100%;
+    max-width: 320px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+    /* Fondo con líneas más definidas y juntas */
+    background: repeating-conic-gradient(
+        #B7E2ED 0deg,
+        #B7E2ED 6deg,
+        #C2E6F0 6deg,
+        #C2E6F0 12deg
+    );
+  }
+  
+  .home-box.sello-huancayo::before {
+    content: "";
+    position: absolute;
+    top: 40%; /* Punto de convergencia más arriba */
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+      #B7E2ED 0deg,
+      #B7E2ED 6deg,
+      #C2E6F0 6deg,
+      #C2E6F0 12deg
+    );
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  
+  /* Aseguramos que el contenido esté encima del fondo */
+  .home-box > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .feedback-text {
+    position: absolute;
+    top: 40%; /* Ajusta la posición del texto */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "DM Sans", sans-serif;
+    font-size: 3rem; /* Tamaño del texto */
+    font-weight: bold;
+        color: #ffffff;
+    text-align: center;
+    -webkit-text-stroke: 2px #f26522; /* Contorno naranja */
+    text-shadow: 
+    -2px -2px 0 #DD5B22, /* Sombra superior izquierda */
+    2px -2px 0 #DD5B22,  /* Sombra superior derecha */
+    -2px 2px 0 #DD5B22,  /* Sombra inferior izquierda */
+    2px 2px 0 #DD5B22,   /* Sombra inferior derecha */
+    0px 0px 0 #DD5B22;   /* Ajuste del borde interno */
+  }
+
+  .sello-image {
+    width: 180px; /* Aumenta el tamaño de la imagen */
+    height: 180px;
+    border-radius: 50%; /* Mantiene la forma circular */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.35); /* Aumenta la sombra */
+    object-fit: cover; /* Asegura que la imagen se ajuste bien al contenedor */
+    margin-bottom: 20px; /* Espaciado entre la imagen y el botón */
+    position: relative;
+    top: -20px; /* Mueve la imagen un poco más arriba */
+  }
+
+.continue-button {
+    display: block;
+    margin: 20px auto; /* Centra horizontalmente */
+    padding: 15px 30px; /* Espaciado interno del botón */
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff; /* Texto blanco */
+    background-color: #dd5b22; /* Fondo naranja */
+    border: none; /* Sin borde */
+    border-radius: 25px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    cursor: pointer; /* Cambia el cursor a pointer */
+    transition: all 0.2s ease; /* Transición suave */
+  }
+  
+  .continue-button:hover {
+    background-color: #bb4a1c; /* Fondo más oscuro al pasar el mouse */
+  }
+  
+  .continue-button:active {
+    transform: translateY(2px); /* Efecto de presionado */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Reduce la sombra */
+  }

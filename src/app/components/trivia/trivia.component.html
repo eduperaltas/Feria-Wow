@@ -1,42 +1,82 @@
 <div class="background-container">
-  <!-- Imagen de fondo -->
-  <img src="imgs/fondo.png" alt="Fondo" class="background-image" />
-
-  <!-- Cabecera de trivia con barra de progreso integrada -->
-  <div class="trivia-header">
-    <div class="progress-fill" [style.width.%]="(timeLeft / 10) * 100"></div> <!-- Fondo de progreso -->
-    <span class="icon">🍿</span>
-    <span class="title">{{ triviaName | uppercase }}</span>
-    <span class="timer">{{ timeLeft }}'</span>
+  <!-- Sección superior de bienvenida -->
+  <div class="header">
+    <div class="greeting">
+      <h2 class="user-name">Hola {{ name }}</h2>
+      <!-- Aquí puedes reemplazar con el nombre dinámico -->
+      <p class="morning-text">¡Juguemos!</p>
+    </div>
+    <div class="profile-image">
+      <img src="imgs/user.png" alt="Perfil de Usuario" />
+    </div>
   </div>
 
   <div class="trivia-container">
-
-    <!-- Contenedor de Pregunta -->
-    <div class="pregunta-card">
-      <div class="pregunta">
-        {{ currentQuestion?.id }}
+    <img
+      src="imgs/wow-circulos.png"
+      alt="WOW Circulos"
+      class="background-image"
+    />
+    <div class="trivia-box">
+      <div class="header-with-timer">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="imgs/wow-simple-logo.png" alt="Logo OWOW" />
+        </div>
+    
+        <!-- Temporizador circular -->
+        <div class="timer-circle">
+          <svg class="progress-ring" width="80" height="80">
+            <circle
+              class="progress-ring__circle"
+              cx="40"
+              cy="40"
+              r="35"
+              stroke-width="5"
+              fill="transparent"
+            ></circle>
+          </svg>
+          <div class="timer-text">{{ timeLeft }}</div>
+        </div>
       </div>
-    </div>
-
-    <!-- Opciones -->
-    <div class="opciones">
-      <button
-        *ngFor="let optionKey of getOptionKeys(currentQuestion)"
-        [class.selected]="selectedAnswer === optionKey"
-        (click)="selectAnswer(optionKey)"
-        class="opcion"
-      >
-        {{ currentQuestion?.[optionKey] }}
-      </button>
-    </div>
-
-    <!-- Botón Confirmar -->
-    <button class="confirmar" (click)="nextQuestion()" [disabled]="!isAnswered">Siguiente</button>
-
-    <!-- Feedback en pantalla completa -->
-    <div [ngClass]="feedbackClass" class="feedback-overlay">
-      {{ feedbackMessage }}
+    
+      <!-- Contenedor de Pregunta -->
+      <div class="pregunta-card">
+        <img
+          src="imgs/pregunta-card.png"
+          alt="Pregunta Card"
+          class="pregunta-card-image"
+        />
+        <div class="pregunta-text">
+          {{ currentQuestion?.id }}
+        </div>
+      </div>
+    
+      <!-- Opciones -->
+      <div class="opciones-container">
+        <div class="opciones">
+          <button
+            *ngFor="let optionKey of getOptionKeys(currentQuestion); let i = index"
+            [ngClass]="{
+              opcion: true,
+              selected: selectedAnswer === optionKey,
+              correct: showFeedback && optionKey === currentQuestion?.respuesta,
+              incorrect:
+                showFeedback &&
+                optionKey !== currentQuestion?.respuesta &&
+                selectedAnswer === optionKey
+            }"
+            (click)="handleOptionClick(optionKey)"
+          >
+            {{ currentQuestion?.[optionKey] }}
+          </button>
+        </div>
+      </div>
+    
+      <!-- Feedback dentro de trivia-box -->
+      <div [ngClass]="feedbackClass" class="feedback-box">
+        {{ feedbackMessage }}
+      </div>
     </div>
   </div>
 </div>

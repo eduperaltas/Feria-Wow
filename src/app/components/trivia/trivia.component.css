@@ -1,52 +1,167 @@
-/* Estructura general */
-body, html {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    overflow: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Contenedor de la imagen de fondo */
-  .background-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-  }
-  
-  /* Imagen de fondo */
-  .background-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-  
-  /* Contenedor principal de la trivia */
-  .trivia-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 500px;
-    height: 90vh;
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: auto;
-  }
-  
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+
+/* Estilos globales */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* Sección superior de bienvenida */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  color: white;
+  margin-top: 40px; /* Ajustamos el margen superior para bajarlo */
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+}
+
+.morning-text {
+  font-size: 20px; /* Aumentamos el tamaño de fuente */
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+  margin: 0;
+  color: #f1d7ff;
+}
+
+.user-name {
+  font-size: 26px; /* Aumentamos el tamaño de fuente */
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
+  margin: 8px 0 0; /* Ajustamos el margen */
+}
+
+.profile-image img {
+  width: 60px; /* Aumentamos el tamaño de la imagen */
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+/* Contenedor de la imagen de fondo */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #ec671f;
+}
+
+
+  /* Contenedor principal del login */
+.trivia-container {
+  position: relative; /* Necesario para posicionar la imagen como fondo */
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Alinea el login hacia la parte inferior */
+  height: 100vh;
+  width: 100%;
+  padding: 0px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: auto;
+}
+
+/* Imagen de fondo */
+.background-image {
+  position: absolute;
+  top: 45%; /* Posiciona al 50% desde arriba */
+  left: 50%; /* Posiciona al 50% desde la izquierda */
+  transform: translate(-50%, -50%); /* Ajusta la posición para centrarla completamente */
+  width: auto; /* Mantiene proporciones */
+  height: auto; /* Mantiene proporciones */
+  max-width: 87%; /* Se ajusta al ancho máximo del contenedor */
+  max-height: 100%; /* Se ajusta al alto máximo del contenedor */
+  z-index: 0; /* Coloca la imagen detrás del contenido */
+  pointer-events: none; /* Evita que interfiera con los clics */
+}
+
+.trivia-box {
+  background-color: #611f78;
+  border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
+  padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
+  width: 100%;
+  max-width: 320px;
+  min-height: 90vh; /* Mantiene la altura mínima */
+  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea el contenido hacia la parte superior */
+  border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+}
+
+.header-with-timer {
+  display: flex; /* Hace que los elementos hijos estén en línea horizontal */
+  align-items: center; /* Alinea verticalmente al centro */
+  justify-content: space-between; /* Espacio entre el logo y el temporizador */
+  padding: 10px; /* Espaciado interno */
+  width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+}
+
+/* Logo */
+.logo img {
+  width: 120px; /* Ajusta el tamaño del logo */
+  object-fit: contain; /* Mantiene las proporciones del logo */
+}
+
+/* Temporizador circular */
+.timer-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px; /* Tamaño del círculo */
+  height: 60px;
+  border-radius: 50%; /* Hace que sea un círculo */
+  background-color: #ffffff; /* Fondo blanco */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+  margin-left: 10px; /* Espaciado con respecto al logo */
+  position: relative;
+}
+
+/* SVG del círculo */
+.progress-ring {
+  position: absolute;
+  transform: rotate(-90deg); /* Rotar el círculo para que inicie desde arriba */
+}
+
+.progress-ring__circle {
+  stroke: #dd5b22; /* Color del progreso */
+  stroke-dasharray: 230; /* Circunferencia aproximada del círculo */
+  stroke-dashoffset: 230; /* Inicialmente vacío */
+  transition: stroke-dashoffset 1s linear; /* Transición suave */
+  stroke-linecap: round; /* Extremos redondeados */
+}
+
+/* Texto dentro del temporizador */
+.timer-text {
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
+  font-size: 1.3em; /* Tamaño del texto */
+  font-weight: bold;
+  color: #4a1861; /* Texto en morado */
+  z-index: 1;
+}
+
   /* Cabecera de la trivia */
   .trivia-header {
     position: relative;
@@ -107,57 +222,113 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+  /* Contenedor de la tarjeta de pregunta */
+.pregunta-card {
+  position: relative; /* Necesario para posicionar el texto sobre la imagen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 350px; /* Tamaño máximo consistente */
+  margin: 18px auto; /* Centrar y espaciado */
+}
+
+/* Imagen de fondo */
+.pregunta-card-image {
+  width: 100%;
+  border-radius: 10px; /* Opcional: Bordes redondeados */
+  object-fit: cover; /* Asegura que la imagen mantenga su proporción */
+}
+
+/* Texto sobre la imagen */
+.pregunta-text {
+  position: absolute;
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+  font-size: 1.3em; /* Tamaño de fuente ajustable */
+  font-weight: bold;
+  color: #611f78; /* Contraste sobre la imagen */
+  text-align: center;
+  padding: 10px;
+  word-wrap: break-word; /* Ajusta el texto para evitar desbordes */
+  max-width: 90%; /* Asegura que el texto no se salga de la imagen */
+}
   
-  /* Contenedor de la pregunta */
-  .pregunta-card {
-    width: 90%;
-    background-color: #f7f8fa;
-    color: #333;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 15px 0;
-    min-height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .pregunta {
-    font-size: 1.3em;
-    font-style: italic;
-    text-align: center;
-  }
-  
-  /* Opciones de respuesta */
-  .opciones {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .opcion {
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 1.2em;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.3s ease;
-    border: 1px solid #ccc;
-  }
-  
-  .opcion:hover {
-    background-color: #d0d0d0;
-  }
-  
-  .opcion.selected {
-    background-color: #bbdefb;
-    border-color: #1976d2;
-    color: #1976d2;
-  }
+/* Contenedor de opciones */
+.opciones-container {
+  position: relative; /* Necesario para posicionar la imagen como fondo */
+  z-index: 1;
+  background-color: #ffffff; /* Fondo blanco */
+  border-radius: 12px; /* Esquinas redondeadas */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin: 0 auto; /* Centrado horizontal */
+  width: 100%; /* Asegura que se ajuste al contenedor */
+  max-width: 350px; /* Tamaño máximo */
+  text-align: center;
+}
+
+/* Contenedor de opciones */
+.opciones-container {
+  background-color: #ffffff; /* Fondo blanco */
+  border-radius: 12px; /* Esquinas redondeadas */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin: 20px auto; /* Separación y centrado */
+  width: 250px; /* Tamaño máximo del contenedor */
+  text-align: center; /* Alinear el contenido */
+}
+
+/* Opciones individuales */
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaciado entre opciones */
+}
+
+.opcion {
+  position: relative; /* Necesario para la sombra inferior */
+  background-color: #611f78; /* Color morado */
+  color: #ffffff; /* Texto blanco */
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px; /* Tamaño del texto */
+  font-weight: bold; /* Texto en negrita */
+  padding: 15px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 20px; /* Esquinas redondeadas */
+  text-align: center; /* Centrar texto */
+  cursor: pointer; /* Cambiar cursor al pasar sobre las opciones */
+  box-shadow: 5px 7px 0 #4A1861; /* Base del botón en un tono más oscuro */
+  transition: all 0.2s ease; /* Animaciones suaves */
+}
+
+.opcion:hover {
+  transform: translateY(-2px); /* Eleva un poco el botón al pasar el mouse */
+  box-shadow: 0 6px 0 #2E0F3D; /* Ajustar la sombra al elevar */
+}
+
+.opcion:active {
+  transform: translateY(2px); /* Simula el "clic" bajando el botón */
+  box-shadow: 0 2px 0 #2E0F3D; /* Reducir la sombra al hacer clic */
+}
+
+/* Opción seleccionada */
+.opcion.selected {
+  background-color: #DD5B22; /* Naranja al seleccionar */
+  box-shadow: 0 4px 0 #8E3C17; /* Base más oscura para el botón naranja */
+}
+
+/* Opción correcta */
+.opcion.correct {
+  background-color: #4caf50; /* Verde si es correcta */
+  box-shadow: 0 4px 0 #2e7d32; /* Sombra verde oscuro */
+}
+
+/* Opción incorrecta */
+.opcion.incorrect {
+  background-color: #f44336; /* Rojo si es incorrecta */
+  box-shadow: 0 4px 0 #b71c1c; /* Sombra rojo oscuro */
+}
   
   /* Botón Confirmar */
   .confirmar {
@@ -188,37 +359,113 @@ body, html {
   .confirmar:active:not(:disabled) {
     transform: scale(0.98);
   }
+/* Feedback dentro de trivia-box */
+.feedback-box {
+  position: absolute; /* Superpone el feedback sobre el contenido */
+
+  border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
+  padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
+  width: 100%;
+  max-width: 320px;
+  min-height: 87vh; /* Mantiene la altura mínima */
+
+  top: 50%; /* Centrado verticalmente */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta el posicionamiento al centro */
+  background-color: rgba(21, 21, 21, 0.7); /* Fondo blanco semitransparente */
+  color: #ffffff; /* Texto morado */
+  font-family: 'DM Sans', sans-serif;
+  font-style: bold;
+  font-size: 3.5em; /* Tamaño de texto */
+  align-content: center;
+  font-weight: bold; /* Negrita para destacar */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.432); /* Sombra para destacar */
+  text-align: center; /* Centrar texto */
+  z-index: 10; /* Asegura que esté por encima del resto del contenido */
+  pointer-events: none; /* Evita que bloquee los clics cuando está oculto */
+  opacity: 0; /* Oculto por defecto */
+  transition: opacity 0.3s ease; /* Transición para mostrar y ocultar */
+  text-shadow: 
+    -3px -3px 0 #DD5B22, /* Sombra superior izquierda */
+    3px -3px 0 #DD5B22,  /* Sombra superior derecha */
+    -3px 3px 0 #DD5B22,  /* Sombra inferior izquierda */
+    3px 3px 0 #DD5B22,   /* Sombra inferior derecha */
+    0px 0px 0 #DD5B22;   /* Ajuste del borde interno */
+}
+
+.feedback-box.show {
+  display: block; /* Asegura que se muestre */
+  pointer-events: auto; /* Permite clics si el feedback es interactivo */
+  opacity: 1; /* Hace visible el feedback */
+}
   
-  /* Feedback de respuesta */
-  .feedback-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2em;
-    text-align: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+
+/* Contenedor del spinner */
+.loading-container {
+  display: flex; /* Flexbox para centrar */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  height: 100vh; /* Ocupa toda la pantalla */
+  background-color: #f26522; /* Fondo naranja */
+  text-align: center; /* Texto centrado */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999; /* Por encima de otros elementos */
+}
+
+/* Spinner circular */
+.spinner {
+  display: flex;
+  flex-direction: column; /* Texto debajo del círculo */
+  align-items: center;
+  gap: 20px; /* Espaciado entre spinner y texto */
+}
+
+.spinner .progress-ring {
+  animation: rotate 1.5s linear infinite; /* Rotación infinita */
+  width: 80px;
+  height: 80px;
+}
+
+.spinner .progress-ring__circle {
+  stroke: #ffffff; /* Blanco para el círculo */
+  stroke-dasharray: 220; /* Longitud del trazo */
+  stroke-dashoffset: 0; /* Sin desplazamiento inicial */
+  animation: dash 1.5s ease-in-out infinite; /* Animación de carga */
+  transform-origin: center; /* Animación alrededor del centro */
+  stroke-width: 6;
+  fill: transparent;
+}
+
+/* Animación de rotación */
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .feedback-overlay.show {
-    opacity: 1;
-    visibility: visible;
+}
+
+/* Animación del trazo */
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 220;
+    stroke-dashoffset: 0;
   }
-  
-  .feedback-overlay.correcto {
-    background-color: rgba(76, 175, 80, 0.9); /* Verde para correcto */
+  50% {
+    stroke-dasharray: 150, 220;
+    stroke-dashoffset: -75;
   }
-  
-  .feedback-overlay.incorrecto {
-    background-color: rgba(229, 57, 53, 0.9); /* Rojo para incorrecto */
+  100% {
+    stroke-dasharray: 1, 220;
+    stroke-dashoffset: -220;
   }
-  
+}
+
+/* Texto debajo del spinner */
+.spinner p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.5em;
+  color: #ffffff; /* Blanco */
+  margin: 0;
+}
