@@ -1,34 +1,34 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TriviaService } from '../../services/trivia.service';
-import { AuthService } from '../../services/auth.service';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ActivatedRoute, Router } from "@angular/router";
+import { TriviaService } from "../../services/trivia.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
-  selector: 'app-trivia',
+  selector: "app-trivia",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './trivia.component.html',
-  styleUrls: ['./trivia.component.css']
+  templateUrl: "./trivia.component.html",
+  styleUrls: ["./trivia.component.css"],
 })
 export class TriviaComponent implements OnInit, OnDestroy {
-  trivia: string | null = '';
+  trivia: string | null = "";
   questions: any[] = [];
   answeredQuestions: Set<string> = new Set(); // IDs de preguntas ya contestadas correctamente
   currentQuestionIndex = 0;
   currentQuestion: any;
-  feedbackMessage = '';
-  feedbackClass = '';
+  feedbackMessage = "";
+  feedbackClass = "";
   isAnswered = false;
-  sello: string | null = '';
+  sello: string | null = "";
   objetivo = 0;
   answeredCorrectly = 0;
-  userId = '';
-  timeLeft = 10;
+  userId = "";
+  timeLeft = 3;
   timerInterval: any;
   selectedAnswer: string | null = null;
   showFeedback = false;
-  name: string | null = '';
+  name: string | null = "";
 
   constructor(
     private triviaService: TriviaService,
@@ -38,14 +38,17 @@ export class TriviaComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    this.trivia = this.route.snapshot.paramMap.get('tema');
-    this.sello = this.route.snapshot.paramMap.get('sello');
-    this.userId = this.authService.getUsername() || '';
+    this.trivia = this.route.snapshot.paramMap.get("tema");
+    this.sello = this.route.snapshot.paramMap.get("sello");
+    this.userId = this.authService.getUsername() || "";
     this.name = this.authService.getName();
     if (this.sello) {
-      const completed = await this.triviaService.hasSello(this.userId, this.sello);
+      const completed = await this.triviaService.hasSello(
+        this.userId,
+        this.sello
+      );
       if (completed) {
-        this.router.navigate(['/pasaporte']);
+        this.router.navigate(["/pasaporte"]);
         return;
       }
       await this.loadTriviaData();
@@ -55,7 +58,6 @@ export class TriviaComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.clearTimer();
   }
-
   handleOptionClick(optionKey: string): void {
     if (this.isAnswered || this.showFeedback) return; // Evitar múltiples clics mientras se muestra el feedback
   
@@ -63,70 +65,114 @@ export class TriviaComponent implements OnInit, OnDestroy {
     this.isAnswered = true; // Marcar la pregunta como respondida
     this.clearTimer(); // Detener el temporizador si está activo
   
-    const correctAnswerKey = this.currentQuestion['respuesta'].toString();
+    const correctAnswerKey = this.currentQuestion["respuesta"].toString();
   
     // Agregar un pequeño delay antes de mostrar el feedback
     setTimeout(() => {
       // Verificar si la respuesta es correcta o incorrecta
       if (optionKey === correctAnswerKey) {
-        this.feedbackMessage = '¡Correcto!';
-        this.feedbackClass = 'feedback-box show';
+        this.feedbackMessage = "¡Correcto!";
+        this.feedbackClass = "feedback-box show";
+        // Guardar el ID de la pregunta correctamente respondida
+        this.answeredQuestions.add(this.currentQuestion.id);
         this.answeredCorrectly++;
+  
+        // Validar si se cumplió el objetivo
+        if (this.answeredCorrectly >= this.objetivo) {
+          console.log("¡Objetivo cumplido! Completando trivia...");
+          this.completeTrivia(); // Llamar a la función para finalizar la trivia
+          return; // No continuar con la siguiente pregunta
+        }
       } else {
-        this.feedbackMessage = '¡Sigue intentando!';
-        this.feedbackClass = 'feedback-box show';
+        this.feedbackMessage = "¡Sigue intentando!";
+        this.feedbackClass = "feedback-box show";
       }
-    
   
       // Mostrar el feedback y pasar a la siguiente pregunta después de 2 segundos
       setTimeout(() => {
-        this.feedbackClass = 'feedback-box'; // Oculta el feedback después de 2 segundos
+        this.feedbackClass = "feedback-box"; // Oculta el feedback después de 2 segundos
         this.resetForNextQuestion();
       }, 2000);
     }, 500); // Delay de medio segundo antes de mostrar el feedback
   }
-  
+
   resetForNextQuestion(): void {
     this.showFeedback = false;
-    this.feedbackMessage = '';
-    this.feedbackClass = '';
+    this.feedbackMessage = "";
+    this.feedbackClass = "";
     this.selectedAnswer = null;
     this.isAnswered = false;
-  
-    // Validar si el usuario cumplió con el objetivo antes de avanzar a la siguiente pregunta
-    if (this.answeredCorrectly >= this.objetivo) {
-      this.completeTrivia(); // Redirige a la ventana de felicitación
-      return; // Detener la ejecución adicional de la función
+
+    // Si ya no hay preguntas restantes, reiniciar las preguntas no contestadas
+    if (this.currentQuestionIndex >= this.questions.length - 1) {
+      console.log(
+        "No hay más preguntas. Reiniciando preguntas no contestadas."
+      );
+      this.resetUnansweredQuestions();
+      return;
     }
-  
+
+    // Avanzar a la siguiente pregunta
+    this.currentQuestionIndex++;
+    this.currentQuestion = this.questions[this.currentQuestionIndex];
+    this.startTimer();
+  }
+
+  public nextQuestion(): void {
+    this.resetFeedback();
+
     if (this.currentQuestionIndex < this.questions.length - 1) {
       // Avanzar a la siguiente pregunta
       this.currentQuestionIndex++;
       this.currentQuestion = this.questions[this.currentQuestionIndex];
-      this.startTimer(); // Reiniciar el temporizador para la nueva pregunta
+      this.startTimer();
     } else {
-      // Si no hay más preguntas, finaliza la trivia
-      this.completeTrivia();
+      // Cuando se acaban las preguntas, reiniciar las no contestadas
+      this.resetUnansweredQuestions();
     }
   }
-  
+
+  private resetUnansweredQuestions(): void {
+    // Filtrar solo las preguntas que no se contestaron correctamente
+    const unansweredQuestions = this.questions.filter(
+      (question) => !this.answeredQuestions.has(question.id)
+    );
+
+    if (unansweredQuestions.length === 0) {
+      console.log(
+        "Todas las preguntas han sido contestadas. Reiniciando todas las preguntas."
+      );
+      this.questions = this.shuffleArray(this.questions); // Reutiliza todas las preguntas disponibles
+    } else {
+      console.log("Reiniciando preguntas no contestadas.");
+      this.questions = this.shuffleArray(unansweredQuestions);
+    }
+
+    // Reiniciar al comienzo de las preguntas
+    this.currentQuestionIndex = 0;
+    this.currentQuestion = this.questions[this.currentQuestionIndex];
+    this.startTimer();
+  }
+
   startTimer(): void {
-    const circle = document.querySelector(".progress-ring__circle") as SVGCircleElement;
+    const circle = document.querySelector(
+      ".progress-ring__circle"
+    ) as SVGCircleElement;
     const radius = 35; // Radio del círculo
     const circumference = 2 * Math.PI * radius;
-  
+
     if (circle) {
       circle.style.strokeDasharray = `${circumference} ${circumference}`;
       circle.style.strokeDashoffset = `${circumference}`;
     }
-  
-    this.timeLeft = 10; // Tiempo inicial en segundos
+
+    this.timeLeft = 3; // Tiempo inicial en segundos
     this.timerInterval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
-  
+
         // Actualizar el progreso del círculo
-        const offset = circumference - (this.timeLeft / 10) * circumference;
+        const offset = circumference - (this.timeLeft / 3) * circumference;
         if (circle) {
           circle.style.strokeDashoffset = `${offset}`;
         }
@@ -136,19 +182,19 @@ export class TriviaComponent implements OnInit, OnDestroy {
       }
     }, 1000); // Actualización cada segundo
   }
-  
+
   handleTimeout(): void {
     this.clearTimer();
     this.showFeedback = true;
-    this.feedbackMessage = 'Tiempo agotado';
-    this.feedbackClass = 'feedback-overlay show incorrecto';
+    this.feedbackMessage = "Tiempo agotado";
+    this.feedbackClass = "feedback-overlay show incorrecto";
     this.isAnswered = true; // Marcar como respondida para prevenir clics
-  
+
     setTimeout(() => {
       this.resetForNextQuestion();
     }, 2000);
   }
-  
+
   clearTimer(): void {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
@@ -167,7 +213,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
   private async loadQuestions() {
     this.questions = this.shuffleArray(
       (await this.triviaService.getQuestionsByTema(this.trivia!)).filter(
-        question => !this.answeredQuestions.has(question.id)
+        (question) => !this.answeredQuestions.has(question.id)
       )
     );
     this.currentQuestionIndex = 0;
@@ -184,50 +230,29 @@ export class TriviaComponent implements OnInit, OnDestroy {
   }
 
   getOptionKeys(question: any): string[] {
-    return Object.keys(question).filter(key => !isNaN(Number(key))).sort();
-  }
-
-  public nextQuestion() {
-    this.resetFeedback();
-    if (this.currentQuestionIndex < this.questions.length - 1) {
-      this.currentQuestionIndex++;
-      this.currentQuestion = this.questions[this.currentQuestionIndex];
-      this.startTimer();
-    } else {
-      this.resetUnansweredQuestions();
-    }
-  }
-
-  private resetUnansweredQuestions() {
-    // Filtrar solo las preguntas que no se contestaron correctamente
-    this.questions = this.shuffleArray(
-      this.questions.filter(question => !this.answeredQuestions.has(question.id))
-    );
-    if (this.questions.length === 0) {
-      console.log('No hay preguntas restantes. Reiniciando todas las preguntas.');
-      this.loadQuestions(); // Cargar todas las preguntas excepto las contestadas correctamente
-    } else {
-      console.log('Reiniciando preguntas no contestadas.');
-      this.currentQuestionIndex = 0;
-      this.currentQuestion = this.questions[this.currentQuestionIndex];
-      this.startTimer();
-    }
+    return Object.keys(question)
+      .filter((key) => !isNaN(Number(key)))
+      .sort();
   }
 
   private async completeTrivia() {
     if (!this.sello) {
-      console.error('No se puede completar la trivia: Sello es null o indefinido.');
+      console.error(
+        "No se puede completar la trivia: Sello es null o indefinido."
+      );
       return;
     }
-  
+
     await this.triviaService.markTriviaAsCompleted(this.userId, this.sello);
-    this.router.navigate(['/felicitacion'], { queryParams: { sello: this.sello } });
+    this.router.navigate(["/felicitacion"], {
+      queryParams: { sello: this.sello },
+    });
   }
 
   private resetFeedback() {
     this.isAnswered = false;
-    this.feedbackMessage = '';
-    this.feedbackClass = '';
-    this.selectedAnswer = '';
+    this.feedbackMessage = "";
+    this.feedbackClass = "";
+    this.selectedAnswer = "";
   }
 }

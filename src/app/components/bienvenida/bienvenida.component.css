@@ -1,5 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+
 /* Estilos globales */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -10,42 +14,17 @@ body, html {
   justify-content: center;
   overflow: hidden;
 }
-
-/* Contenedor de la imagen de fondo */
-.background-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-
-
-/* Imagen de fondo */
-.background-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
 /* Sección superior de bienvenida */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 20px;
+  padding: 10px 20px;
   width: 100%;
   box-sizing: border-box;
   color: white;
   margin-top: 40px; /* Ajustamos el margen superior para bajarlo */
 }
-
 
 .greeting {
   display: flex;
@@ -53,15 +32,17 @@ body, html {
 }
 
 .morning-text {
-  font-size: 18px; /* Aumentamos el tamaño de fuente */
-  font-weight: normal;
+  font-size: 20px; /* Aumentamos el tamaño de fuente */
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
   margin: 0;
   color: #f1d7ff;
 }
 
 .user-name {
   font-size: 26px; /* Aumentamos el tamaño de fuente */
-  font-weight: bold;
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
   margin: 8px 0 0; /* Ajustamos el margen */
 }
 
@@ -72,76 +53,95 @@ body, html {
   border: 2px solid #ffffff;
 }
 
-/* Contenedor principal de bienvenida */
-.welcome-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  height: 100vh;
+/* Contenedor de la imagen de fondo */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 0;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
+  height: 100%;
+  overflow: hidden;
+  background-color: #ec671f;
 }
 
-/* Caja de bienvenida */
-.welcome-box {
-  background-color: #ffffff;
-  border-radius: 20px 20px 0 0;
-  padding: 30px;
+
+  /* Contenedor principal del login */
+.welcome-container {
+  position: relative; /* Necesario para posicionar la imagen como fondo */
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Alinea el login hacia la parte inferior */
+  height: 100vh;
   width: 100%;
-  max-width: 350px;
-  min-height: 90vh;
-  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: auto;
+}
+
+
+.welcome-box {
+  background-color: #611f78;
+  border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
+  padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
+  width: 75%;
+  max-width: 320px;
+  min-height: 90vh; /* Mantiene la altura mínima */
+  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior */
   text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-}
-
-/* Botón continuar */
-.continue-button {
-  background-color: #6a4c93; /* Color de fondo del botón */
-  color: #ffffff; /* Color del texto */
-  border: none;
-  border-radius: 25px;
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-}
-
-.continue-button:hover {
-  background-color: #5a3b7d; /* Color de fondo al hacer hover */
+  justify-content: flex-start; /* Alinea el contenido hacia la parte superior */
+  border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
 }
 
 /* Logo */
-.logo {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
 .logo img {
-  width: 200px;
+  width: 120px; /* Ajusta el tamaño del logo */
+  object-fit: contain; /* Mantiene las proporciones del logo */
 }
 
-/* Título y contenido de bienvenida */
 .welcome-title {
-  font-size: 22px;
-  color: #333;
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
+  font-size: 24px;
+  color: #ffffff;
   font-weight: bold;
-  margin: 0;
-  margin-bottom: 20px;
+  text-align: center; /* Centra el texto */
+  margin-top: 30px; /* Reduce aún más el margen inferior */
+}
+.welcome-content {
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  overflow: auto;
+  height: 35vh;
+  color: #ffffff;
+  font-weight: normal;
+  text-align: left; /* Centra el texto */
 }
 
-.welcome-content {
-  font-size: 16px;
-  color: #666;
-  line-height: 1.6;
+.continue-button {
+  display: block;
+  margin: 20px auto; /* Centra horizontalmente */
+  padding: 15px 30px; /* Espaciado interno del botón */
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff; /* Texto blanco */
+  background-color: #dd5b22; /* Fondo naranja */
+  border: none; /* Sin borde */
+  border-radius: 25px; /* Bordes redondeados */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+  cursor: pointer; /* Cambia el cursor a pointer */
+  transition: all 0.2s ease; /* Transición suave */
+}
+
+.continue-button:hover {
+  background-color: #bb4a1c; /* Fondo más oscuro al pasar el mouse */
+}
+
+.continue-button:active {
+  transform: translateY(2px); /* Efecto de presionado */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Reduce la sombra */
 }

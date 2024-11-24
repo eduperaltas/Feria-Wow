@@ -8,9 +8,9 @@ import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'pasaporte', component: HomeComponent},
-  { path: 'bienvenida', component: BienvenidaComponent },
+  { path: 'pasaporte', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'bienvenida', component: BienvenidaComponent},
   { path: 'trivia/:tema/:sello', component: TriviaComponent, canActivate: [AuthGuard] }, // Aplicamos el guard aquí
-  { path: 'felicitacion', component: FelicitacionComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'felicitacion', component: FelicitacionComponent, canActivate: [AuthGuard]  },
+  { path: '', redirectTo: '/pasaporte', pathMatch: 'full' },
 ];

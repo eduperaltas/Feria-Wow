@@ -99,7 +99,7 @@ html {
   background-color: #611f78;
   border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
   padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
-  width: 100%;
+  width: 75%;
   max-width: 320px;
   min-height: 90vh; /* Mantiene la altura mínima */
   box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior */
@@ -112,7 +112,7 @@ html {
 
 /* Logo */
 .logo img {
-  width: 120px; /* Ajusta el tamaño del logo */
+  width: 15vh; /* Ajusta el tamaño del logo */
   object-fit: contain; /* Mantiene las proporciones del logo */
 }
 
@@ -146,8 +146,8 @@ html {
 
 /* Círculo del sello */
 .seal-circle {
-  width: 140px;
-  height: 140px;
+  width: 15vh;
+  height: 15vh;
   border-radius: 50%;
   display: flex;
   align-items: center;

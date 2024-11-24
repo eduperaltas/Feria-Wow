@@ -1,36 +1,40 @@
 <div class="background-container">
-  <!-- Imagen de fondo -->
-  <img src="imgs/fondo.png" alt="Fondo" class="background-image" />
-
   <!-- Sección superior de bienvenida -->
   <div class="header">
     <div class="greeting">
-      <p class="morning-text">🌞 Buen día</p>
-      <h2 class="user-name">{{ name }}</h2> <!-- Aquí puedes reemplazar con el nombre dinámico -->
+      <!-- Aquí puedes reemplazar con el nombre dinámico -->
+      <p class="morning-text">¡Buenos días!</p>
+      <h2 class="user-name">Hola {{ name }}</h2>
     </div>
     <div class="profile-image">
-      <img src="imgs/wow-logo.png" alt="Perfil de Usuario" />
+      <img src="imgs/user.png" alt="Perfil de Usuario" />
     </div>
   </div>
 
-  <!-- Contenedor principal de bienvenida -->
   <div class="welcome-container">
     <div class="welcome-box">
-      <!-- Contenido principal de bienvenida -->
-      <div class="content">
-        <!-- Logo centrado -->
-        <div class="logo">
-          <img src="imgs/wow-logo.png" alt="Logo OWOW" />
-        </div>
-
-        <!-- Mensaje de bienvenida -->
-        <h1 class="welcome-title">Bienvenido a la experiencia</h1>
-        <p class="welcome-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
-        </p>
+      <div class="logo">
+        <img src="imgs/wow-simple-logo.png" alt="Logo OWOW" />
       </div>
-
-      <!-- Botón para continuar en la parte inferior -->
+      <h2 class="welcome-title">Bienvenido a una experiencia WOW</h2>
+      <p class="welcome-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+        odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+        odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+        odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+        odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+        odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+        odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+        odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+        odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+      </p>
       <button class="continue-button" (click)="continue()">Continuar</button>
     </div>
   </div>

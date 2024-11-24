@@ -33,26 +33,33 @@ export class AuthService {
 
   // Verificar si el usuario existe, usando caché si es posible
   async userExists(username: string): Promise<boolean> {
-    // Verificar si los datos ya están en el caché
-    const cachedUser = this.cacheService.get(`user_${username}`);
-    if (cachedUser) {
-      console.log(
-        "Usuario encontrado en caché, evitando consulta en Firestore."
-      );
-      return true;
+    try {
+      // Verificar si los datos ya están en el caché
+      const cachedUser = this.cacheService.get(`user_${username}`);
+      if (cachedUser) {
+        console.log(
+          "Usuario encontrado en caché, evitando consulta en Firestore."
+        );
+        return true;
+      }
+  
+      // Consultar en Firestore solo si no está en caché
+      const userRef = doc(this.firestore, `users/${username}`);
+      const docSnap = await getDoc(userRef);
+  
+      if (docSnap.exists()) {
+        console.log("Usuario encontrado en Firestore.");
+        // Guardar en caché el resultado si el usuario existe
+        this.cacheService.set(`user_${username}`, docSnap.data());
+        return true;
+      } else {
+        console.warn("Usuario no encontrado en Firestore.");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error al verificar si el usuario existe:", error);
+      return false; // Devuelve false en caso de error
     }
-
-    // Consultar en Firestore solo si no está en caché
-    const userRef = doc(this.firestore, `users/${username}`);
-    const docSnap = await getDoc(userRef);
-    const exists = docSnap.exists();
-
-    // Guardamos en caché el resultado si el usuario existe
-    if (exists) {
-      this.cacheService.set(`user_${username}`, docSnap.data());
-    }
-
-    return exists;
   }
 
   // Configurar la sesión del usuario y almacenar los datos en caché y en localStorage
