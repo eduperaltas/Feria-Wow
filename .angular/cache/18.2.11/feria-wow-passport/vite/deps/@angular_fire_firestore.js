@@ -1,6 +1,6 @@
 import {
   AuthInstances
-} from "./chunk-YVR33EKF.js";
+} from "./chunk-35LA62HC.js";
 import {
   Component,
   FirebaseApp,
@@ -27,14 +27,20 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-P2AQ43GH.js";
+} from "./chunk-L25TZYMF.js";
 import {
   InjectionToken,
   Injector,
   NgModule,
   NgZone,
-  Observable,
   Optional,
+  makeEnvironmentProviders,
+  setClassMetadata,
+  ɵɵdefineInjector,
+  ɵɵdefineNgModule
+} from "./chunk-Q6YULEG4.js";
+import {
+  Observable,
   __async,
   __superGet,
   concatMap,
@@ -42,17 +48,13 @@ import {
   distinctUntilChanged,
   filter,
   from,
-  makeEnvironmentProviders,
   map,
   pairwise,
   pipe,
   scan,
-  setClassMetadata,
   startWith,
-  timer,
-  ɵɵdefineInjector,
-  ɵɵdefineNgModule
-} from "./chunk-4LCX3UEJ.js";
+  timer
+} from "./chunk-APZFMCL4.js";
 
 // node_modules/@firebase/webchannel-wrapper/dist/bloom-blob/esm/bloom_blob_es2018.js
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};

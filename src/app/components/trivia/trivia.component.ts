@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./trivia.component.css']
 })
 export class TriviaComponent implements OnInit, OnDestroy {
-  tema: string | null = '';
+  trivia: string | null = '';
   questions: any[] = [];
   answeredQuestions: Set<string> = new Set(); // IDs de preguntas ya contestadas correctamente
   currentQuestionIndex = 0;
@@ -20,7 +20,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
   feedbackMessage = '';
   feedbackClass = '';
   isAnswered = false;
-  triviaName = '';
+  sello: string | null = '';
   objetivo = 0;
   answeredCorrectly = 0;
   userId = '';
@@ -38,13 +38,14 @@ export class TriviaComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    this.tema = this.route.snapshot.paramMap.get('tema');
+    this.trivia = this.route.snapshot.paramMap.get('tema');
+    this.sello = this.route.snapshot.paramMap.get('sello');
     this.userId = this.authService.getUsername() || '';
     this.name = this.authService.getName();
-    if (this.tema) {
-      const completed = await this.triviaService.hasCompletedTrivia(this.userId, this.tema);
+    if (this.sello) {
+      const completed = await this.triviaService.hasSello(this.userId, this.sello);
       if (completed) {
-        this.router.navigate(['/felicitacion']);
+        this.router.navigate(['/pasaporte']);
         return;
       }
       await this.loadTriviaData();
@@ -91,6 +92,12 @@ export class TriviaComponent implements OnInit, OnDestroy {
     this.feedbackClass = '';
     this.selectedAnswer = null;
     this.isAnswered = false;
+  
+    // Validar si el usuario cumplió con el objetivo antes de avanzar a la siguiente pregunta
+    if (this.answeredCorrectly >= this.objetivo) {
+      this.completeTrivia(); // Redirige a la ventana de felicitación
+      return; // Detener la ejecución adicional de la función
+    }
   
     if (this.currentQuestionIndex < this.questions.length - 1) {
       // Avanzar a la siguiente pregunta
@@ -150,9 +157,8 @@ export class TriviaComponent implements OnInit, OnDestroy {
   }
 
   private async loadTriviaData() {
-    const triviaData = await this.triviaService.getTriviaData(this.tema!);
+    const triviaData = await this.triviaService.getTriviaData(this.trivia!);
     if (triviaData) {
-      this.triviaName = triviaData.nombre || '';
       this.objetivo = Number(triviaData.objetivo) || 0;
       await this.loadQuestions();
     }
@@ -160,7 +166,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
 
   private async loadQuestions() {
     this.questions = this.shuffleArray(
-      (await this.triviaService.getQuestionsByTema(this.tema!)).filter(
+      (await this.triviaService.getQuestionsByTema(this.trivia!)).filter(
         question => !this.answeredQuestions.has(question.id)
       )
     );
@@ -209,8 +215,13 @@ export class TriviaComponent implements OnInit, OnDestroy {
   }
 
   private async completeTrivia() {
-    await this.triviaService.markTriviaAsCompleted(this.userId, this.triviaName);
-    this.router.navigate(['/bienvenida']);
+    if (!this.sello) {
+      console.error('No se puede completar la trivia: Sello es null o indefinido.');
+      return;
+    }
+  
+    await this.triviaService.markTriviaAsCompleted(this.userId, this.sello);
+    this.router.navigate(['/felicitacion'], { queryParams: { sello: this.sello } });
   }
 
   private resetFeedback() {

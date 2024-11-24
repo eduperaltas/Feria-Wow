@@ -31,12 +31,17 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-P2AQ43GH.js";
+} from "./chunk-L25TZYMF.js";
 import {
   InjectionToken,
   NgModule,
-  Observable,
   Optional,
+  setClassMetadata,
+  ɵɵdefineInjector,
+  ɵɵdefineNgModule
+} from "./chunk-Q6YULEG4.js";
+import {
+  Observable,
   __async,
   __rest,
   __superGet,
@@ -44,12 +49,9 @@ import {
   distinct,
   from,
   of,
-  setClassMetadata,
   switchMap,
-  timer,
-  ɵɵdefineInjector,
-  ɵɵdefineNgModule
-} from "./chunk-4LCX3UEJ.js";
+  timer
+} from "./chunk-APZFMCL4.js";
 
 // node_modules/@firebase/auth/dist/esm2017/index-68602d24.js
 function _prodErrorMap() {
@@ -7583,4 +7585,4 @@ rxfire/auth/index.esm.js:
    * limitations under the License.
    *)
 */
-//# sourceMappingURL=chunk-YVR33EKF.js.map
+//# sourceMappingURL=chunk-35LA62HC.js.map

@@ -125,3 +125,51 @@ html {
   text-align: center; /* Centra el texto */
   margin: 30px 0; /* Reduce aún más el margen inferior */
 }
+
+/* Contenedor general de los sellos */
+.seal-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* Cada sello */
+.seal-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Círculo del sello */
+.seal-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Mantiene la sombra */
+  overflow: hidden; /* Asegura que la imagen se mantenga dentro del círculo */
+}
+
+/* Imagen dentro del sello */
+.seal-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen ocupe todo el círculo */
+  border-radius: 50%; /* Hace la imagen circular */
+}
+
+/* Texto debajo del sello */
+.seal-text {
+  font-size: 0.9rem;
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
+  font-weight: bold;
+  color: white;
+  margin-top: 14px;
+}

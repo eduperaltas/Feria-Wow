@@ -56,15 +56,15 @@ export class TriviaService {
   }
 
   // Verifica si el usuario ha completado la trivia, utilizando caché
-  async hasCompletedTrivia(userId: string, triviaName: string): Promise<boolean> {
-    const cacheKey = `completed_${userId}_${triviaName}`;
+  async hasSello(userId: string, sello: string): Promise<boolean> {
+    const cacheKey = `completed_${userId}_${sello}`;
     const cachedStatus = this.cacheService.get(cacheKey);
     if (cachedStatus !== undefined) {
       console.log("Estado de trivia completada obtenido del caché.");
       return cachedStatus;
     }
 
-    const userDocRef = doc(this.firestore, `users/${userId}/trivias/${triviaName}`);
+    const userDocRef = doc(this.firestore, `users/${userId}/sellos/${sello}`);
     const userDoc = await getDoc(userDocRef);
     const completed = userDoc.exists() && userDoc.data()?.['completed'] === true;
 
@@ -75,7 +75,7 @@ export class TriviaService {
 
   // Marca la trivia como completada para el usuario
   async markTriviaAsCompleted(userId: string, triviaName: string): Promise<void> {
-    const triviaCompletionRef = doc(this.firestore, `users/${userId}/trivias/${triviaName}`);
+    const triviaCompletionRef = doc(this.firestore, `users/${userId}/sellos/${triviaName}`);
     await setDoc(triviaCompletionRef, { completed: true }, { merge: true });
 
     // Actualizar el caché una vez marcada como completada

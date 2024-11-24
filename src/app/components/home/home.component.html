@@ -13,11 +13,27 @@
     </div>
   
     <div class="home-container">
-      <div class="home-box">
+      <!-- <div class="home-box">
         <div class="logo">
             <img src="imgs/wow-simple-logo.png" alt="Logo OWOW" />
           </div>
           <h2 class="home-title">Pasaporte WOW</h2>
+      </div>
+    </div> -->
+    <div class="home-box">
+      <div class="logo">
+        <img src="imgs/wow-simple-logo.png" alt="Logo OWOW" />
+      </div>
+      <h2 class="home-title">Pasaporte WOW</h2>
+    
+      <!-- Contenedor de sellos -->
+      <div class="seal-container">
+        <div *ngFor="let sello of sellosUser | keyvalue" class="seal-item">
+          <div class="seal-circle">
+            <img [src]="getSelloImage(sello.key)" alt="{{ sello.key }} sello" />
+          </div>
+          <p class="seal-text">{{ sello.key }}</p>
+        </div>
       </div>
     </div>
   </div>

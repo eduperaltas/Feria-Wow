@@ -6,10 +6,6 @@
       </div>
     </div>
     <div class="home-container">
-        <!-- <div class="home-box" [ngClass]="currentBackgroundClass">
-            <div class="feedback-text">{{ feedbackMessage }}</div>
-            <button class="continue-button" (click)="changeBackground()">Continuar</button>
-          </div> -->
           <div class="home-box" [ngClass]="currentBackgroundClass">
               <!-- Si hay una imagen actual, mostrarla -->
               <img *ngIf="currentImage" [src]="currentImage" alt="Sello" class="sello-image" />
@@ -17,6 +13,6 @@
               <div *ngIf="!currentImage" class="feedback-text">
                 {{ feedbackMessage }}
               </div>
-            <button class="continue-button" (click)="changeBackground()">Continuar</button>
+            <button class="continue-button" (click)="actionBtn()">Continuar</button>
           </div>
   </div>

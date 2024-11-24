@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'pasaporte', component: HomeComponent},
   { path: 'bienvenida', component: BienvenidaComponent },
-  { path: 'trivia/:tema', component: TriviaComponent, canActivate: [AuthGuard] }, // Aplicamos el guard aquí
+  { path: 'trivia/:tema/:sello', component: TriviaComponent, canActivate: [AuthGuard] }, // Aplicamos el guard aquí
   { path: 'felicitacion', component: FelicitacionComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

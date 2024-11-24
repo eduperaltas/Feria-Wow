@@ -1,10 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Firestore, doc, getDoc, setDoc, enableIndexedDbPersistence } from '@angular/fire/firestore';
-import { CacheService } from './cache.service';
-import { Router } from '@angular/router';
+import { Injectable } from "@angular/core";
+import {
+  Firestore,
+  doc,
+  getDoc,
+  setDoc,
+  enableIndexedDbPersistence,
+  collection,
+  getDocs,
+} from "@angular/fire/firestore";
+import { CacheService } from "./cache.service";
+import { Router } from "@angular/router";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
   constructor(
@@ -12,14 +20,15 @@ export class AuthService {
     private cacheService: CacheService // Añadimos CacheService para almacenar datos en caché
   ) {
     // Activar persistencia local en Firestore para AuthService
-    enableIndexedDbPersistence(this.firestore)
-      .catch((err) => {
-        if (err.code == 'failed-precondition') {
-          console.warn("Persistencia fallida: múltiples pestañas abiertas en AuthService.");
-        } else if (err.code == 'unimplemented') {
-          console.warn("Persistencia no soportada en este navegador.");
-        }
-      });
+    enableIndexedDbPersistence(this.firestore).catch((err) => {
+      if (err.code == "failed-precondition") {
+        console.warn(
+          "Persistencia fallida: múltiples pestañas abiertas en AuthService."
+        );
+      } else if (err.code == "unimplemented") {
+        console.warn("Persistencia no soportada en este navegador.");
+      }
+    });
   }
 
   // Verificar si el usuario existe, usando caché si es posible
@@ -27,7 +36,9 @@ export class AuthService {
     // Verificar si los datos ya están en el caché
     const cachedUser = this.cacheService.get(`user_${username}`);
     if (cachedUser) {
-      console.log("Usuario encontrado en caché, evitando consulta en Firestore.");
+      console.log(
+        "Usuario encontrado en caché, evitando consulta en Firestore."
+      );
       return true;
     }
 
@@ -40,7 +51,7 @@ export class AuthService {
     if (exists) {
       this.cacheService.set(`user_${username}`, docSnap.data());
     }
-    
+
     return exists;
   }
 
@@ -64,36 +75,36 @@ export class AuthService {
       // Guardamos en caché los datos del usuario
       this.cacheService.set(`user_${username}`, userData);
     } else {
-      console.error('El usuario no existe en la base de datos.');
+      console.error("El usuario no existe en la base de datos.");
     }
   }
 
   // Método privado para almacenar datos en localStorage
   private storeUserDataInLocalStorage(username: string, userData: any): void {
-    const name = userData?.['nombre'] || '';
-    const email = userData?.['correo'] || '';
-    const phone = userData?.['telefono'] || '';
+    const name = userData?.["nombre"] || "";
+    const email = userData?.["correo"] || "";
+    const phone = userData?.["telefono"] || "";
 
-    localStorage.setItem('username', username);
-    localStorage.setItem('name', name);
-    localStorage.setItem('email', email);
-    localStorage.setItem('phone', phone);
+    localStorage.setItem("username", username);
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("phone", phone);
   }
 
   // Verificar si el usuario ha visto la pantalla de bienvenida
   async hasSeenWelcome(username: string): Promise<boolean> {
-    const welcomeSeen = localStorage.getItem('welcomeSeen');
-    if (welcomeSeen === 'true') {
+    const welcomeSeen = localStorage.getItem("welcomeSeen");
+    if (welcomeSeen === "true") {
       return true;
     }
 
     const userRef = doc(this.firestore, `users/${username}`);
     const docSnap = await getDoc(userRef);
-    const seen = docSnap.exists() && docSnap.data()?.['welcomeSeen'] === true;
+    const seen = docSnap.exists() && docSnap.data()?.["welcomeSeen"] === true;
 
     // Guardamos en localStorage para evitar futuras consultas
     if (seen) {
-      localStorage.setItem('welcomeSeen', 'true');
+      localStorage.setItem("welcomeSeen", "true");
     }
 
     return seen;
@@ -103,27 +114,57 @@ export class AuthService {
   async markWelcomeAsSeen(username: string): Promise<void> {
     const userRef = doc(this.firestore, `users/${username}`);
     await setDoc(userRef, { welcomeSeen: true }, { merge: true });
-    localStorage.setItem('welcomeSeen', 'true'); // Guardar en localStorage para futuras verificaciones
+    localStorage.setItem("welcomeSeen", "true"); // Guardar en localStorage para futuras verificaciones
   }
 
   // Métodos para manejar el estado de sesión en localStorage
   isUserLoggedIn(): boolean {
-    return localStorage.getItem('username') !== null;
+    return localStorage.getItem("username") !== null;
   }
 
   getUsername(): string | null {
-    return localStorage.getItem('username');
+    return localStorage.getItem("username");
   }
 
   getName(): string | null {
-    return localStorage.getItem('name');
+    return localStorage.getItem("name");
   }
 
   setTema(tema: string): void {
-    localStorage.setItem('tema', tema);
+    localStorage.setItem("tema", tema);
   }
 
   getTema(): string | null {
-    return localStorage.getItem('tema');
+    return localStorage.getItem("tema");
+  }
+
+  async getUserSellos(userId: string, forceUpdate: boolean = false): Promise<Record<string, boolean>> {
+    const cacheKey = `user_sellos_${userId}`;
+  
+    // Si no se fuerza la actualización, primero intenta obtener del caché
+    if (!forceUpdate) {
+      const cachedSellos = this.cacheService.get(cacheKey);
+      if (cachedSellos) {
+        console.log("Sellos del usuario obtenidos del caché.");
+        return cachedSellos;
+      }
+    }
+  
+    // Acceso a la colección de sellos del usuario en Firestore
+    const sellosRef = collection(this.firestore, `users/${userId}/sellos`);
+    const snapshot = await getDocs(sellosRef);
+  
+    // Construir el objeto de sellos: { selloName: true/false }
+    const sellos: Record<string, boolean> = {};
+    snapshot.forEach((doc) => {
+      const selloName = doc.id;
+      const data = doc.data();
+      sellos[selloName] = data["completed"] === true;
+    });
+  
+    // Guardar en caché para futuras consultas
+    this.cacheService.set(cacheKey, sellos);
+  
+    return sellos;
   }
 }
