@@ -232,6 +232,8 @@ html {
   width: 100%;
   max-width: 350px; /* Tamaño máximo consistente */
   margin: 18px auto; /* Centrar y espaciado */
+  margin-bottom: -5px; /* Reducir el margen inferior de la pregunta */
+
 }
 
 /* Imagen de fondo */
@@ -292,7 +294,7 @@ html {
   background-color: #611f78; /* Color morado */
   color: #ffffff; /* Texto blanco */
   font-family: "DM Sans", sans-serif;
-  font-size: 16px; /* Tamaño del texto */
+  font-size: 14px; /* Tamaño del texto */
   font-weight: bold; /* Texto en negrita */
   padding: 15px; /* Espaciado interno */
   border: none; /* Sin borde */
@@ -340,7 +342,7 @@ html {
   padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
   width: 75%;
   max-width: 320px;
-  min-height: 87vh; /* Mantiene la altura mínima */
+  min-height: 89vh; /* Mantiene la altura mínima */
 
   top: 50%; /* Centrado verticalmente */
   left: 50%; /* Centrado horizontalmente */

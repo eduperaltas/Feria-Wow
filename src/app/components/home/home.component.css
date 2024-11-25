@@ -69,7 +69,6 @@ html {
 .home-container {
   position: relative; /* Necesario para posicionar la imagen como fondo */
   z-index: 1;
-
   display: flex;
   justify-content: center;
   align-items: flex-end; /* Alinea el login hacia la parte inferior */
@@ -112,7 +111,7 @@ html {
 
 /* Logo */
 .logo img {
-  width: 15vh; /* Ajusta el tamaño del logo */
+  width: 12vh; /* Ajusta el tamaño del logo */
   object-fit: contain; /* Mantiene las proporciones del logo */
 }
 
@@ -123,7 +122,7 @@ html {
   color: #ffffff;
   font-weight: bold;
   text-align: center; /* Centra el texto */
-  margin: 30px 0; /* Reduce aún más el margen inferior */
+  margin: 20px 0; /* Reduce aún más el margen inferior */
 }
 
 /* Contenedor general de los sellos */
@@ -146,8 +145,8 @@ html {
 
 /* Círculo del sello */
 .seal-circle {
-  width: 15vh;
-  height: 15vh;
+  width: 14vh;
+  height: 14vh;
   border-radius: 50%;
   display: flex;
   align-items: center;

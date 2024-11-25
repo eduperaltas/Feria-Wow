@@ -24,7 +24,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
   objetivo = 0;
   answeredCorrectly = 0;
   userId = "";
-  timeLeft = 3;
+  timeLeft = 10;
   timerInterval: any;
   selectedAnswer: string | null = null;
   showFeedback = false;
@@ -42,6 +42,15 @@ export class TriviaComponent implements OnInit, OnDestroy {
     this.sello = this.route.snapshot.paramMap.get("sello");
     this.userId = this.authService.getUsername() || "";
     this.name = this.authService.getName();
+  
+    // Recuperar preguntas contestadas correctamente desde el caché o localStorage
+    const cachedAnsweredQuestions = localStorage.getItem(
+      `answeredQuestions_${this.trivia}`
+    );
+    if (cachedAnsweredQuestions) {
+      this.answeredQuestions = new Set(JSON.parse(cachedAnsweredQuestions));
+    }
+  
     if (this.sello) {
       const completed = await this.triviaService.hasSello(
         this.userId,
@@ -58,42 +67,46 @@ export class TriviaComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.clearTimer();
   }
+
   handleOptionClick(optionKey: string): void {
-    if (this.isAnswered || this.showFeedback) return; // Evitar múltiples clics mientras se muestra el feedback
+    if (this.isAnswered || this.showFeedback) return;
   
     this.selectedAnswer = optionKey;
-    this.isAnswered = true; // Marcar la pregunta como respondida
-    this.clearTimer(); // Detener el temporizador si está activo
+    this.isAnswered = true;
+    this.clearTimer();
   
     const correctAnswerKey = this.currentQuestion["respuesta"].toString();
   
-    // Agregar un pequeño delay antes de mostrar el feedback
     setTimeout(() => {
-      // Verificar si la respuesta es correcta o incorrecta
       if (optionKey === correctAnswerKey) {
         this.feedbackMessage = "¡Correcto!";
         this.feedbackClass = "feedback-box show";
-        // Guardar el ID de la pregunta correctamente respondida
-        this.answeredQuestions.add(this.currentQuestion.id);
-        this.answeredCorrectly++;
   
-        // Validar si se cumplió el objetivo
+        // Guardar la pregunta correctamente contestada
+        this.answeredQuestions.add(this.currentQuestion.id);
+  
+        // Actualizar localStorage con las preguntas contestadas correctamente
+        localStorage.setItem(
+          `answeredQuestions_${this.trivia}`,
+          JSON.stringify([...this.answeredQuestions])
+        );
+  
+        this.answeredCorrectly++;
         if (this.answeredCorrectly >= this.objetivo) {
           console.log("¡Objetivo cumplido! Completando trivia...");
-          this.completeTrivia(); // Llamar a la función para finalizar la trivia
-          return; // No continuar con la siguiente pregunta
+          this.completeTrivia();
+          return;
         }
       } else {
         this.feedbackMessage = "¡Sigue intentando!";
         this.feedbackClass = "feedback-box show";
       }
   
-      // Mostrar el feedback y pasar a la siguiente pregunta después de 2 segundos
       setTimeout(() => {
-        this.feedbackClass = "feedback-box"; // Oculta el feedback después de 2 segundos
+        this.feedbackClass = "feedback-box";
         this.resetForNextQuestion();
       }, 2000);
-    }, 500); // Delay de medio segundo antes de mostrar el feedback
+    }, 500);
   }
 
   resetForNextQuestion(): void {
@@ -166,13 +179,13 @@ export class TriviaComponent implements OnInit, OnDestroy {
       circle.style.strokeDashoffset = `${circumference}`;
     }
 
-    this.timeLeft = 3; // Tiempo inicial en segundos
+    this.timeLeft = 10; // Tiempo inicial en segundos
     this.timerInterval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
 
         // Actualizar el progreso del círculo
-        const offset = circumference - (this.timeLeft / 3) * circumference;
+        const offset = circumference - (this.timeLeft / 10) * circumference;
         if (circle) {
           circle.style.strokeDashoffset = `${offset}`;
         }

@@ -43,7 +43,7 @@ html {
   background-color: #611f78;
   border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
   padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
-  width: 100%;
+  width: 75%;
   max-width: 320px;
   min-height: 80vh; /* Mantiene la altura mínima */
   box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior */
@@ -63,24 +63,24 @@ html {
 
 .logo img {
   margin-top: 40px;
-  width: 230px; /* Ajusta el tamaño del logo si es necesario */
+  width: 25vh; /* Ajusta el tamaño del logo si es necesario */
 }
 
 /* Título y subtítulo */
 .welcome-title {
   font-family: "DM Sans", sans-serif;
   font-style: bold;
-  font-size: 56px;
+  font-size: 2.5rem;
   color: #ffffff;
   font-weight: bold;
   text-align: center; /* Centra el texto */
-  margin-bottom: 2px; /* Reduce aún más el margen inferior */
+  margin-bottom: 10px; /* Reduce aún más el margen inferior */
 }
 
 .subtitle {
   font-family: "DM Sans", sans-serif;
   font-style: bold;
-  font-size: 28px;
+  font-size: 1.4rem;
   color: #ffffff;
   text-align: center; /* Centra el texto */
   margin-top: 0; /* Sin margen superior */
@@ -88,8 +88,10 @@ html {
 }
 
 .error-message {
+  font-family: "DM Sans", sans-serif;
   color: #ff4d4f;
   font-size: 14px;
+  text-align: center;
   margin-top: 10px;
   text-align: left;
 }
@@ -132,8 +134,8 @@ html {
   color: #ffffff;
   border: none;
   border-radius: 25px;
-  padding: 12px;
-  font-size: 16px;
+  padding: 10px;
+  font-size:1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
