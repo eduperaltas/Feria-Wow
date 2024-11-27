@@ -85,19 +85,15 @@ html {
   padding: 20px 20px; /* Espaciado interno */
   width: 90%; /* Ajuste responsivo para diferentes anchos */
   height: calc(100vh - 10px); /* Altura total menos el espacio del header */
-  display: flex;
-  flex-direction: column; /* Diseño vertical */
-  justify-content: space-between; /* Espaciado entre título, contenido y botón */
   box-sizing: border-box;
-  overflow: hidden; /* Evitamos desbordamientos */
   box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra */
   border: 3px solid #ffffff; /* Borde blanco */
 }
 
 /* Logo */
 .logo img {
-  width: 85px; /* Ajusta el tamaño del logo */
-  object-fit: contain; /* Mantiene las proporciones del logo */
+  width: 75px; /* Ajusta el tamaño del logo */
+  object-fit: contain;
 }
 
 /* Contenedor del título */
@@ -105,26 +101,35 @@ html {
   font-family: "DM Sans", sans-serif;
   font-style: bold;
   font-size: 24px;
+  height: auto; /* Ajusta la altura automáticamente */
+  margin-top: 10px; /* Reduce el margen superior */
+  margin-bottom: 10px; /* Reduce el margen inferior */
   color: #ffffff;
   font-weight: bold;
   text-align: center; /* Centrado horizontal */
-  margin-bottom: 10px; /* Espaciado con respecto al contenido */
 }
 
+
+/* Contenido */
 .welcome-content {
+  display: flex; /* Habilitamos Flexbox */
+  flex-direction: column; /* Alineación de los hijos en columna */
+}
+.txt-content {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
   font-size: 14px;
-  overflow: auto;
-  flex: 1.2; /* Ocupa el espacio restante */
-  overflow-y: auto; /* Permite el desplazamiento vertical */  height: 35vh;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+  height: 35vh; /* Altura relativa para un diseño responsivo */
+  margin-top: 10px; /* Reduce el margen superior */
+  padding: 10px; /* Ajusta el padding interno */
   color: #ffffff;
   font-weight: normal;
-  text-align: left; /* Centra el texto */
-}
 
-.btn-zone{
-  flex: 0.8;
+  margin: 0; /* Quitamos márgenes para que ocupe el espacio restante */
+  flex-grow: 0.3; /* Hace que el contenido ocupe todo el espacio restante */
+
+  text-align: left;
 }
 
 /* El botón siempre visible al final */

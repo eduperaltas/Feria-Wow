@@ -18,7 +18,7 @@ export class HomeComponent {
   sellosImgs: Record<string, string> = {
     "sello-lima": "imgs/sello-Lima.png",
     "sello-ica": "imgs/sello-Ica.png",
-    "sello-chiclayo": "imgs/sello.Chiclayo.png",
+    "sello-chiclayo": "imgs/sello-Chiclayo.png",
     "sello-huancayo": "imgs/sello-Huancayo.png",
   };
 

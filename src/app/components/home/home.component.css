@@ -150,8 +150,8 @@ html {
 
 /* Círculo del sello */
 .seal-circle {
-  width: 20vh;
-  height: 20vh;
+  width: 17vh;
+  height: 17vh;
   border-radius: 50%;
   display: flex;
   align-items: center;
