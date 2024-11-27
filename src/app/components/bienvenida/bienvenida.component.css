@@ -81,58 +81,66 @@ html {
 
 .welcome-box {
   background-color: #611f78;
-  border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
-  padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
-  width: 75%;
-  max-width: 320px;
-  min-height: 90vh; /* Mantiene la altura mínima */
-  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior */
-  text-align: left;
+  border-radius: 20px 20px 0 0; /* Bordes redondeados en la parte superior */
+  padding: 20px 20px; /* Espaciado interno */
+  width: 90%; /* Ajuste responsivo para diferentes anchos */
+  height: calc(100vh - 10px); /* Altura total menos el espacio del header */
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Alinea el contenido hacia la parte superior */
-  border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+  flex-direction: column; /* Diseño vertical */
+  justify-content: space-between; /* Espaciado entre título, contenido y botón */
+  box-sizing: border-box;
+  overflow: hidden; /* Evitamos desbordamientos */
+  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra */
+  border: 3px solid #ffffff; /* Borde blanco */
 }
 
 /* Logo */
 .logo img {
-  width: 120px; /* Ajusta el tamaño del logo */
+  width: 85px; /* Ajusta el tamaño del logo */
   object-fit: contain; /* Mantiene las proporciones del logo */
 }
 
+/* Contenedor del título */
 .welcome-title {
   font-family: "DM Sans", sans-serif;
   font-style: bold;
   font-size: 24px;
   color: #ffffff;
   font-weight: bold;
-  text-align: center; /* Centra el texto */
-  margin-top: 30px; /* Reduce aún más el margen inferior */
+  text-align: center; /* Centrado horizontal */
+  margin-bottom: 10px; /* Espaciado con respecto al contenido */
 }
+
 .welcome-content {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
-  font-size: 16px;
+  font-size: 14px;
   overflow: auto;
-  height: 35vh;
+  flex: 1.2; /* Ocupa el espacio restante */
+  overflow-y: auto; /* Permite el desplazamiento vertical */  height: 35vh;
   color: #ffffff;
   font-weight: normal;
   text-align: left; /* Centra el texto */
 }
 
+.btn-zone{
+  flex: 0.8;
+}
+
+/* El botón siempre visible al final */
 .continue-button {
   display: block;
-  margin: 20px auto; /* Centra horizontalmente */
-  padding: 15px 30px; /* Espaciado interno del botón */
+  margin: 10px auto 0 auto; /* Alineación y espaciado */
+  padding: 15px 30px; /* Espaciado interno */
   font-size: 18px;
   font-weight: bold;
-  color: #ffffff; /* Texto blanco */
-  background-color: #dd5b22; /* Fondo naranja */
-  border: none; /* Sin borde */
+  color: #ffffff;
+  background-color: #dd5b22; /* Color del botón */
+  border: none;
   border-radius: 25px; /* Bordes redondeados */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-  cursor: pointer; /* Cambia el cursor a pointer */
-  transition: all 0.2s ease; /* Transición suave */
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .continue-button:hover {

@@ -40,7 +40,7 @@ export class BienvenidaComponent implements OnInit {
       this.router.navigateByUrl(this.nextUrl);
     } else {
       // Si no hay nextUrl, redirigir a una página predeterminada
-      this.router.navigate(['/pasaporte']);
+      this.router.navigate(['pasaporte']);
     }
   }
 }

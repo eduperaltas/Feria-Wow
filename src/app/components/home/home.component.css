@@ -95,7 +95,12 @@ html {
 }
 
 .home-box {
-  background-color: #611f78;
+  /* Fondo */
+  background-image: url("../../../../public/imgs/fondo-home.jpg");
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center -20px;
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+
   border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
   padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
   width: 75%;
@@ -145,8 +150,8 @@ html {
 
 /* Círculo del sello */
 .seal-circle {
-  width: 14vh;
-  height: 14vh;
+  width: 20vh;
+  height: 20vh;
   border-radius: 50%;
   display: flex;
   align-items: center;

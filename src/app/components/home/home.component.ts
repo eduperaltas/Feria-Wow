@@ -16,10 +16,10 @@ export class HomeComponent {
 
   // Diccionario de imágenes asociadas a los fondos
   sellosImgs: Record<string, string> = {
-    "sello-lima": "imgs/user.png",
-    "sello-ica": "imgs/wow-circulos.png",
-    "sello-chiclayo": "imgs/wow-logo.png",
-    "sello-huancayo": "imgs/fondo.png",
+    "sello-lima": "imgs/sello-Lima.png",
+    "sello-ica": "imgs/sello-Ica.png",
+    "sello-chiclayo": "imgs/sello.Chiclayo.png",
+    "sello-huancayo": "imgs/sello-Huancayo.png",
   };
 
   // Diccionario de sellos que tiene el usuario

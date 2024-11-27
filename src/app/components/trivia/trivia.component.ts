@@ -145,26 +145,44 @@ export class TriviaComponent implements OnInit, OnDestroy {
     }
   }
 
-  private resetUnansweredQuestions(): void {
+  private async resetUnansweredQuestions(): Promise<void> {
     // Filtrar solo las preguntas que no se contestaron correctamente
     const unansweredQuestions = this.questions.filter(
       (question) => !this.answeredQuestions.has(question.id)
     );
-
+  
     if (unansweredQuestions.length === 0) {
       console.log(
-        "Todas las preguntas han sido contestadas. Reiniciando todas las preguntas."
+        "No hay más preguntas no contestadas. Cargando nuevas preguntas desde la base de datos."
       );
-      this.questions = this.shuffleArray(this.questions); // Reutiliza todas las preguntas disponibles
+  
+      // Recuperar un nuevo conjunto de preguntas desde la base de datos
+      const newQuestions = await this.triviaService.getQuestionsByTema(this.trivia!);
+  
+      if (newQuestions && newQuestions.length > 0) {
+        // Seleccionar 5 preguntas aleatorias de la nueva base de datos
+        const shuffledQuestions = this.shuffleArray(newQuestions).slice(0, 5);
+  
+        // Actualizar la lista de preguntas y limpiar las preguntas contestadas
+        this.questions = shuffledQuestions;
+        this.answeredQuestions.clear();
+      } else {
+        console.error("No se pudieron cargar nuevas preguntas.");
+        this.questions = [];
+      }
     } else {
       console.log("Reiniciando preguntas no contestadas.");
       this.questions = this.shuffleArray(unansweredQuestions);
     }
-
+  
     // Reiniciar al comienzo de las preguntas
-    this.currentQuestionIndex = 0;
-    this.currentQuestion = this.questions[this.currentQuestionIndex];
-    this.startTimer();
+    if (this.questions.length > 0) {
+      this.currentQuestionIndex = 0;
+      this.currentQuestion = this.questions[this.currentQuestionIndex];
+      this.startTimer();
+    } else {
+      console.error("No hay preguntas disponibles. Verifica la base de datos.");
+    }
   }
 
   startTimer(): void {

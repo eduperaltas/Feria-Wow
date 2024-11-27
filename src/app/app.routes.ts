@@ -12,5 +12,5 @@ export const routes: Routes = [
   { path: 'bienvenida', component: BienvenidaComponent},
   { path: 'trivia/:tema/:sello', component: TriviaComponent, canActivate: [AuthGuard] }, // Aplicamos el guard aquí
   { path: 'felicitacion', component: FelicitacionComponent, canActivate: [AuthGuard]  },
-  { path: '', redirectTo: '/pasaporte', pathMatch: 'full' },
+  { path: '', redirectTo: 'pasaporte', pathMatch: 'full' },
 ];
