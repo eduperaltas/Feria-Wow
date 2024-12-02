@@ -24,7 +24,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
   objetivo = 0;
   answeredCorrectly = 0;
   userId = "";
-  timeLeft = 10;
+  timeLeft = 12;
   timerInterval: any;
   selectedAnswer: string | null = null;
   showFeedback = false;
@@ -197,13 +197,13 @@ export class TriviaComponent implements OnInit, OnDestroy {
       circle.style.strokeDashoffset = `${circumference}`;
     }
 
-    this.timeLeft = 10; // Tiempo inicial en segundos
+    this.timeLeft = 12; // Tiempo inicial en segundos
     this.timerInterval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
 
         // Actualizar el progreso del círculo
-        const offset = circumference - (this.timeLeft / 10) * circumference;
+        const offset = circumference - (this.timeLeft / 12) * circumference;
         if (circle) {
           circle.style.strokeDashoffset = `${offset}`;
         }

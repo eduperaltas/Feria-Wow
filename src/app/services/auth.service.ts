@@ -116,6 +116,43 @@ export class AuthService {
 
     return seen;
   }
+  // Verificar si el usuario es seguridad
+  async IsSecurityAccess(username: string): Promise<boolean> {
+    const userRef = doc(this.firestore, `users/${username}`);
+    const docSnap = await getDoc(userRef);
+    const access = docSnap.exists() && docSnap.data()?.["security"] === true;
+    
+    return access;
+  }
+
+  async registerAttendance(username: string): Promise<string> {
+    try {
+      // Verificar si el usuario existe
+      const exists = await this.userExists(username);
+      if (!exists) {
+        console.warn(`El usuario ${username} no existe.`);
+        return "El usuario no existe. Acceso denegado.";
+      }
+  
+      const userRef = doc(this.firestore, `users/${username}`);
+      const docSnap = await getDoc(userRef);
+  
+      // Verificar si el usuario ya tiene asistencia registrada
+      if (docSnap.exists() && docSnap.data()?.["asistencia"] === true) {
+        console.warn(`El usuario ${username} ya registró su asistencia.`);
+        return `El usuario ${docSnap.data()?.["nombre"] || username} ya registró su asistencia. Acceso denegado.`;
+      }
+  
+      // Registrar asistencia
+      await setDoc(userRef, { asistencia: true }, { merge: true });
+      const userName = docSnap.data()?.["nombre"] || username; // Obtener el nombre o usar el username si no existe
+      console.log(`Asistencia registrada para el usuario ${userName}.`);
+      return `Asistencia registrada exitosamente para ${userName}. Acceso permitido.`;
+    } catch (error) {
+      console.error("Error al registrar la asistencia:", error);
+      return "Ocurrió un error al registrar la asistencia. Inténtalo nuevamente.";
+    }
+  }
 
   // Marcar la pantalla de bienvenida como vista
   async markWelcomeAsSeen(username: string): Promise<void> {

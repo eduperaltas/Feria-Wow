@@ -33,8 +33,11 @@ export class AuthGuard implements CanActivate {
     const hasSeenWelcome = await this.authService.hasSeenWelcome(username);
   
     if (hasSeenWelcome) {
-      // Si ya vio la bienvenida, permitir el acceso a la trivia
-      return true;
+      // Si ya vio la bienvenida, permitir el acceso
+      if(nextUrl){
+      return true;} else{
+        return this.router.createUrlTree(["/pasaporte"]);
+      }
     } else {
       // Si no ha visto la bienvenida, redirigir a la pantalla de bienvenida
       return this.router.createUrlTree(["/bienvenida"], { queryParams: { nextUrl } });

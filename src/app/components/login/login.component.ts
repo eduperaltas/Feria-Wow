@@ -31,7 +31,7 @@ export class LoginComponent {
   
           // Obtener la URL de redirección desde los query params
           const queryParams = new URLSearchParams(window.location.search);
-          const nextUrl = queryParams.get("nextUrl") || "/home"; // Por defecto redirigir a "/home"
+          const nextUrl = queryParams.get("nextUrl") || "/pasaporte"; // Por defecto redirigir a "/home"
   
           if (hasSeenWelcome) {
             // Redirigir al nextUrl

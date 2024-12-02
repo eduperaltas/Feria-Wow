@@ -37,7 +37,7 @@ export class FelicitacionComponent implements OnInit {
   private readonly backgroundImages: Record<string, string> = {
     "sello-lima": "imgs/sello-Lima.png",
     "sello-ica": "imgs/sello-Ica.png",
-    "sello-chiclayo": "imgs/sello.Chiclayo.png",
+    "sello-chiclayo": "imgs/sello-Chiclayo.png",
     "sello-huancayo": "imgs/sello-Huancayo.png",
   };
 

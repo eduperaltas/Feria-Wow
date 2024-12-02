@@ -1,0 +1,30 @@
+<div class="background-container" *ngIf="!isLoading">
+    <!-- Sección superior de bienvenida -->
+    <div class="header">
+      <div class="logo">
+        <img src="imgs/wow-logo-horizontal.png" alt="Logo OWOW" />
+      </div>
+    </div>
+    <div class="welcome-container">
+      <div class="welcome-box">
+        <h2 class="welcome-title">{{ welcomeTitle }}</h2>
+        <div class="welcome-content">
+          <div class="profile-image">
+            <img src="imgs/user.png" alt="Perfil de Usuario" />
+          </div>
+          <p class="txt-content">
+            {{ welcomeMessage }}
+          </p>
+          <div class="btn-zone">
+            <button class="continue-button">Continuar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Loader -->
+  <div class="loader-container" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+  </div>

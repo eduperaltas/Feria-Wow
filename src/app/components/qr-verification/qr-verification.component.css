@@ -24,32 +24,18 @@ html {
   margin-top: 40px; /* Ajustamos el margen superior para bajarlo */
 }
 
-.greeting {
-  display: flex;
-  flex-direction: column;
-}
-
-.morning-text {
-  font-size: 20px; /* Aumentamos el tamaño de fuente */
-  font-family: "DM Sans", sans-serif;
-  font-style: normal;
-  margin: 0;
-  color: white;
-}
-
-.user-name {
-  font-size: 26px; /* Aumentamos el tamaño de fuente */
-  font-family: "DM Sans", sans-serif;
-  font-style: bold;
-  margin: 8px 0 0; /* Ajustamos el margen */
-}
-
-.profile-image img {
-  width: 60px; /* Aumentamos el tamaño de la imagen */
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-}
+.profile-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Ajusta el margen superior si es necesario */
+  }
+  
+  .profile-image img {
+    width: 180px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+  }
 
 /* Contenedor de la imagen de fondo */
 .background-container {
@@ -61,7 +47,6 @@ html {
   overflow: hidden;
   background-color: #ec671f;
 }
-
 
   /* Contenedor principal del login */
 .welcome-container {
@@ -78,7 +63,6 @@ html {
   overflow: auto;
 }
 
-
 .welcome-box {
   background-color: #611f78;
   border-radius: 20px 20px 0 0; /* Bordes redondeados en la parte superior */
@@ -92,7 +76,7 @@ html {
 
 /* Logo */
 .logo img {
-  width: 75px; /* Ajusta el tamaño del logo */
+  width: 160px; /* Ajusta el tamaño del logo */
   object-fit: contain;
 }
 
@@ -112,7 +96,6 @@ html {
 
 /* Contenido */
 .welcome-content {
-  display: flex; /* Habilitamos Flexbox */
   flex-direction: column; /* Alineación de los hijos en columna */
 }
 .txt-content {
@@ -120,16 +103,15 @@ html {
   font-style: normal;
   font-size: 14px;
   overflow-y: auto; /* Permite el desplazamiento vertical */
-  height: 35vh; /* Altura relativa para un diseño responsivo */
+  height: 10vh; /* Altura relativa para un diseño responsivo */
   margin-top: 10px; /* Reduce el margen superior */
   padding: 10px; /* Ajusta el padding interno */
   color: #ffffff;
   font-weight: normal;
 
   margin: 0; /* Quitamos márgenes para que ocupe el espacio restante */
-  flex-grow: 0.3; /* Hace que el contenido ocupe todo el espacio restante */
 
-  text-align: left;
+  text-align: center;
 }
 
 /* El botón siempre visible al final */
@@ -156,3 +138,30 @@ html {
   transform: translateY(2px); /* Efecto de presionado */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Reduce la sombra */
 }
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9; /* Fondo claro mientras se carga */
+  }
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top: 5px solid #007bff; /* Color del spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
