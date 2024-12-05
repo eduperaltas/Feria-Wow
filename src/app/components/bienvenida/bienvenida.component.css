@@ -100,7 +100,7 @@ html {
 .welcome-title {
   font-family: "DM Sans", sans-serif;
   font-style: bold;
-  font-size: 24px;
+  font-size: 18px;
   height: auto; /* Ajusta la altura automáticamente */
   margin-top: 10px; /* Reduce el margen superior */
   margin-bottom: 10px; /* Reduce el margen inferior */
@@ -118,7 +118,7 @@ html {
 .txt-content {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
-  font-size: 14px;
+  font-size: 13px;
   overflow-y: auto; /* Permite el desplazamiento vertical */
   height: 35vh; /* Altura relativa para un diseño responsivo */
   margin-top: 10px; /* Reduce el margen superior */
