@@ -163,7 +163,26 @@ html {
   background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
-.home-box.sello-huancayo {
+.home-box.sello-arequipa {
+  position: relative;
+  border-radius: 20px 20px 0 0;
+  padding: 20px 30px;
+  width: 75%;
+  max-width: 320px;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+  /* Fondo con imagen */
+  background-image: url("../../../../public/imgs/fondo-huancayo.jpg");
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center -20px; /* Mueve la imagen un poco hacia arriba */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+.home-box.sello-cusco {
   position: relative;
   border-radius: 20px 20px 0 0;
   padding: 20px 30px;

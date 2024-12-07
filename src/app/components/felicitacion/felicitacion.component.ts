@@ -38,14 +38,16 @@ export class FelicitacionComponent implements OnInit {
     "sello-lima": "imgs/sello-Lima.png",
     "sello-ica": "imgs/sello-Ica.png",
     "sello-chiclayo": "imgs/sello-Chiclayo.png",
-    "sello-huancayo": "imgs/sello-Huancayo.png",
+    "sello-arequipa": "imgs/arequipa-sello.png",
+    "sello-cusco": "imgs/cusco-sello.png",
   };
 
   private readonly backgroundStar: Record<string, string> = {
     "sello-lima": "imgs/estrella-lima.png",
     "sello-ica": "imgs/estrella-ica.png",
     "sello-chiclayo": "imgs/estrella-chiclayo.png",
-    "sello-huancayo": "imgs/estrella-huancayo.png",
+    "sello-arequipa": "imgs/estrella-arequipa.png",
+    "sello-cusco": "imgs/estrellas-cusco.png",
   };
 
   // URL de la imagen actual

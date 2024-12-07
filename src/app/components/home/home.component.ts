@@ -12,6 +12,10 @@ import { firstValueFrom } from "rxjs";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent {
+  // Devuelve la cantidad de sellos con valor `true`
+  countActiveSellos(): number {
+    return Object.values(this.sellosUser).filter((value) => value).length;
+  }
   name: string | null = "";
 
   // Diccionario de imágenes asociadas a los fondos
@@ -19,7 +23,8 @@ export class HomeComponent {
     "sello-lima": "imgs/sello-Lima.png",
     "sello-ica": "imgs/sello-Ica.png",
     "sello-chiclayo": "imgs/sello-Chiclayo.png",
-    "sello-huancayo": "imgs/sello-Huancayo.png",
+    "sello-arequipa": "imgs/arequipa-sello.png",
+    "sello-cusco": "imgs/cusco-sello.png",
   };
 
   // Diccionario de sellos que tiene el usuario

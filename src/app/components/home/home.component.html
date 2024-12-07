@@ -21,15 +21,22 @@
       <div class="logo">
         <img src="imgs/wow-simple-logo.png" alt="Logo OWOW" />
       </div>
-      <h2 class="home-title">Pasaporte WOW</h2>
+      <h2 *ngIf="countActiveSellos() < 5" class="home-title">Pasaporte WOW</h2>
     
       <!-- Contenedor de sellos -->
-      <div class="seal-container">
-        <div *ngFor="let sello of sellosUser | keyvalue" class="seal-item">
-          <div class="seal-circle">
-            <img [src]="getSelloImage(sello.key)" alt="{{ sello.key }} sello" />
+      <div *ngIf="countActiveSellos() == 5" class="seal-container">
+        <!-- Mostrar mensaje si hay 5 sellos -->
+        <div class="contest-message">
+          <p>¡JUEGO FINALIZADO!<br /><br />¡Ya estás participando del sorteo, mucha suerte!</p>
+        </div>      
+      </div>
+      <div *ngIf="countActiveSellos() < 5" class="seal-container">
+        <!-- Mostrar sellos si hay menos de 5 -->
+          <div *ngFor="let sello of sellosUser | keyvalue" class="seal-item">
+            <div class="seal-circle">
+              <img [src]="getSelloImage(sello.key)" alt="{{ sello.key }} sello" />
+            </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
