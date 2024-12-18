@@ -1,0 +1,234 @@
+
+/* Estilos globales */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.logout-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.logout-button {
+  background-color: #6a4c93; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  border: none;
+  border-radius: 25px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #5a3b7d; /* Color al pasar el cursor */
+}
+
+.logout-button:active {
+  transform: scale(0.95); /* Efecto al hacer clic */
+}
+/* Contenedor de la imagen de fondo */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #ec671f;
+}
+
+
+/* Contenedor principal del login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Alinea el login hacia la parte inferior */
+  height: 100vh;
+  width: 100%;
+  padding: 0px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+/* Caja de login */
+.login-box {
+  background-color: #611f78;
+  border-radius: 20px 20px 0 0; /* Bordes redondeados solo en la parte superior */
+  padding: 20px 30px 40px 30px; /* Reducimos el padding superior */
+  width: 75%;
+  max-width: 320px;
+  min-height: 80vh; /* Mantiene la altura mínima */
+  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea el contenido hacia la parte superior */
+  border: 3px solid #ffffff; /* Aquí se define el color blanco para los bordes */
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  justify-content: center; /* Centra el logo horizontalmente */
+  margin-bottom: 20px;
+}
+
+.logo img {
+  margin-top: 40px;
+  width: 25vh; /* Ajusta el tamaño del logo si es necesario */
+}
+
+/* Título y subtítulo */
+.welcome-title {
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center; /* Centra el texto */
+  margin-bottom: 10px; /* Reduce aún más el margen inferior */
+}
+
+.subtitle {
+  font-family: "DM Sans", sans-serif;
+  font-style: bold;
+  font-size: 1.4rem;
+  color: #ffffff;
+  text-align: center; /* Centra el texto */
+  margin-top: 0; /* Sin margen superior */
+  margin-bottom: 5px; /* Reduce el margen inferior */
+}
+
+.error-message {
+  font-family: "DM Sans", sans-serif;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+  text-align: left;
+}
+
+/* Campo de entrada */
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 12px;
+  margin-top: 50px;
+}
+
+.input-icon img {
+  width: 20px;
+  margin-right: 30px;
+  margin-left: 10px;
+}
+
+.input-field {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+}
+
+.input-field::placeholder {
+  color: #601f788a;
+}
+
+/* Botón de login */
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  font-size:1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 2px solid #ffffff; /* Color blanco para los bordes */
+  margin: 20px auto 0; /* Esto lo centra horizontalmente */
+  width: 180px; /* Asegúrate de que tenga un ancho definido */
+}
+
+.login-button:hover {
+  background-color: #5a3b7d;
+}
+
+.button-icon img {
+  width: 20px;
+  margin-right: 8px;
+}
+
+
+/* Estilo del botón */
+.styled-button {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff; /* Color del texto */
+  background-color: transparent; /* Fondo transparente */
+  border: 2px solid #ffffff; /* Borde blanco */
+  border-radius: 30px; /* Bordes redondeados */
+  padding: 10px 30px; /* Espaciado interno */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Efecto de transición */
+}
+
+.styled-button:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente blanco al pasar el mouse */
+  color: #ffffff;
+}
+
+/* Estilo del botón deshabilitado */
+.styled-button:disabled {
+  opacity: 0.5; /* Opacidad reducida */
+  cursor: not-allowed;
+}
+
+/* Barra de progreso */
+.progress-container {
+  width: 50%;
+  margin: auto;
+  height: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ffffff;
+  animation: progress-animation 2s infinite;
+}
+
+/* Animación de la barra de progreso */
+@keyframes progress-animation {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}

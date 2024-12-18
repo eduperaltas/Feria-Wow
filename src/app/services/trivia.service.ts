@@ -73,6 +73,32 @@ export class TriviaService {
     return completed;
   }
 
+
+  
+  // Obtener usuarios con 5 sellos desde Firestore
+// Obtener usuarios con 5 sellos desde Firestore
+async getUsersWithFiveSellos(): Promise<any[]> {
+  const usersWithFiveSellos: any[] = [];
+  const usersRef = collection(this.firestore, 'users');
+  const snapshot = await getDocs(usersRef);
+
+  for (const userDoc of snapshot.docs) {
+    const sellosRef = collection(this.firestore, `users/${userDoc.id}/sellos`);
+    const sellosSnapshot = await getDocs(sellosRef);
+
+    if (sellosSnapshot.size === 5) {
+      const userData = userDoc.data();
+      usersWithFiveSellos.push({
+        id: userDoc.id, // ID del usuario
+        nombre: userData['nombre'] || '', // Nombre del usuario (validar si existe)
+        correo: userData['correo'] || '', // Correo del usuario (validar si existe)
+      });
+    }
+  }
+
+  return usersWithFiveSellos;
+}
+
   // Marca la trivia como completada para el usuario
   async markTriviaAsCompleted(userId: string, triviaName: string): Promise<void> {
     const triviaCompletionRef = doc(this.firestore, `users/${userId}/sellos/${triviaName}`);

@@ -6,6 +6,8 @@ import { FelicitacionComponent } from './components/felicitacion/felicitacion.co
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { QrVerificationComponent } from './components/qr-verification/qr-verification.component';
+import { SendMailComponent } from './components/send-mail/send-mail.component';
+import { SuperUserGuard } from './guards/super-user.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,5 +16,6 @@ export const routes: Routes = [
   { path: 'trivia/:tema/:sello', component: TriviaComponent, canActivate: [AuthGuard] }, // Aplicamos el guard aquí
   { path: 'felicitacion', component: FelicitacionComponent, canActivate: [AuthGuard]  },
   { path: 'qr-verification/:username', component: QrVerificationComponent, canActivate: [AuthGuard]  },
+  { path: 'data', component: SendMailComponent, canActivate: [SuperUserGuard] },
   { path: '', redirectTo: 'pasaporte', pathMatch: 'full' },
 ];

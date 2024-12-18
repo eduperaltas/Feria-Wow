@@ -182,6 +182,27 @@ export class AuthService {
     return localStorage.getItem("tema");
   }
 
+  // Validar si el usuario es SuperUser
+async isSuperUser(username: string): Promise<boolean> {
+  try {
+    // Referencia al documento del usuario en Firestore
+    const userRef = doc(this.firestore, `users/${username}`);
+    const docSnap = await getDoc(userRef);
+
+    // Verificar si el documento existe y si el campo superUser es true
+    if (docSnap.exists() && docSnap.data()?.["superUser"] === true) {
+      console.log(`El usuario ${username} tiene permisos de SuperUser.`);
+      return true;
+    } else {
+      console.warn(`El usuario ${username} no es SuperUser.`);
+      return false;
+    }
+  } catch (error) {
+    console.error("Error al validar el estado de SuperUser:", error);
+    return false; // Devuelve falso en caso de error
+  }
+}
+
   async getUserSellos(userId: string, forceUpdate: boolean = false): Promise<Record<string, boolean>> {
     const cacheKey = `user_sellos_${userId}`;
   

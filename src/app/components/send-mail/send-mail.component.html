@@ -1,0 +1,41 @@
+<div class="background-container">
+    <!-- Imagen de fondo -->
+    <!-- <img src="imgs/fondo.png" alt="Fondo" class="background-image" /> -->
+      <!-- Botón de cierre de sesión -->
+      <div class="logout-container">
+        <button class="logout-button" (click)="logout()">Cerrar sesión</button>
+      </div>
+    <!-- Contenedor del login -->
+    <div class="login-container">
+      <div class="login-box">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="imgs/wow-logo.png" alt="Logo OWOW" />
+        </div>
+  
+        <!-- Título y subtítulo alineados a la izquierda -->
+        <h1 class="welcome-title">¡Bienvenido!</h1>
+        <p class="subtitle">Desde aquí puedes descargar la lista de ganadores</p>
+  
+
+        <div style="text-align: center; margin-top: 20px;">
+          <button
+            (click)="downloadExcel()"
+            [disabled]="loading"
+            class="styled-button"
+          >
+            {{ loading ? 'Procesando...' : 'Descargar Ganadores' }}
+          </button>
+        
+          <!-- Barra de progreso -->
+          <div *ngIf="loading" style="margin-top: 20px;">
+            <div class="progress-container">
+              <div class="progress-bar"></div>
+            </div>
+            <p style="margin-top: 10px; color: white;">Por favor, espera mientras se procesa el archivo...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
